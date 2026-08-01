@@ -1,55 +1,25 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { lazy, Suspense, useEffect, useState } from "react";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import { ServiceGrid, services } from "@/components/ServiceGrid";
-import { TiltCard } from "@/components/TiltCard";
 import { OnboardingTour } from "@/components/OnboardingTour";
 import { LucidLoader } from "@/components/LucidLoader";
 import { CaseStudy } from "@/components/CaseStudy";
 import { PipelineSimulator } from "@/components/PipelineSimulator";
 import { ArchitectureDiagram } from "@/components/ArchitectureDiagram";
 import { CapstoneScorecard } from "@/components/CapstoneScorecard";
-
-const HeroScene = lazy(() => import("@/components/HeroScene"));
-
-function HeroFallback() {
-  return <div className="hero-stage" aria-hidden />;
-}
-
-/** Mounts the interactive 3D hero after hydration + first idle frame. */
-function DeferredHeroScene() {
-  const [show, setShow] = useState(false);
-
-  useEffect(() => {
-    const w = window as Window & {
-      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
-      cancelIdleCallback?: (id: number) => void;
-    };
-    if (w.requestIdleCallback) {
-      const id = w.requestIdleCallback(() => setShow(true), { timeout: 1200 });
-      return () => w.cancelIdleCallback?.(id);
-    }
-    const t = setTimeout(() => setShow(true), 250);
-    return () => clearTimeout(t);
-  }, []);
-
-  if (!show) return <HeroFallback />;
-  return (
-    <Suspense fallback={<HeroFallback />}>
-      <HeroScene />
-    </Suspense>
-  );
-}
+import { DispatchPipe3D } from "@/components/DispatchPipe3D";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "CivicPulse — Azure AI Hazard Triage | Season of AI 2.0 Capstone" },
+      { title: "CivicPulse — Azure AI Dispatch Console | Season of AI 2.0 Capstone" },
       {
         name: "description",
         content:
           "CivicPulse turns a resident's voice note and photo into a ranked, policy-backed city dispatch plan using Azure Speech, Vision, Language, AI Search and OpenAI.",
       },
-      { property: "og:title", content: "CivicPulse — Azure AI Hazard Triage" },
+      { property: "og:title", content: "CivicPulse — Azure AI Hazard Triage Dispatch Console" },
       {
         property: "og:description",
         content:
@@ -63,160 +33,222 @@ export const Route = createFileRoute("/")({
 });
 
 const TICKER =
-  "CIVICPULSE ONLINE · VOICE REPORT IN · VISION EVIDENCE · URGENCY SCORED · BYLAW CITED · DISPATCH PLAN OUT · 05 AZURE SERVICES · ";
+  "VOICE REPORT IN · VISION EVIDENCE · URGENCY SCORED · BYLAW CITED · DISPATCH PLAN OUT · 05 AZURE AI SERVICES · NO REDIRECTS · ";
 
-function Index() {
+export function Index() {
+  const [activeStage, setActiveStage] = useState(0);
+
   return (
-    <main className="relative z-10 mx-auto w-full max-w-7xl px-4 py-6 lg:px-8 lg:py-10">
-      <div className="rack">
-        {/* ---- Header: identity + data plates ---- */}
-        <header className="rack-bar flex flex-col gap-4 p-5 md:flex-row md:items-center md:justify-between">
+    <main className="relative min-h-screen bg-[#0B0C0E] text-[#F3F0E9] font-mono selection:bg-[#C9F031] selection:text-[#000000]">
+      {/* Console Top Header Bar */}
+      <header className="border-b-3 border-[#000000] bg-[#12141A] px-4 py-3 md:px-8">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4">
           <div className="flex flex-wrap items-center gap-3">
-            <h1 className="font-display text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">CivicPulse</h1>
-            <span
-              aria-hidden
-              className="hidden h-5 w-px bg-slate-200 md:block"
-            />
-            <p className="text-xs font-medium text-slate-500">Season of AI 2.0 · Final Capstone Showcase</p>
+            <h1 className="font-display text-2xl font-black tracking-tight text-[#F3F0E9] md:text-3xl">
+              CIVICPULSE
+            </h1>
+            <span className="border border-[#C9F031] bg-black px-2 py-0.5 text-[10px] font-bold text-[#C9F031]">
+              DISPATCH CONSOLE v2.0
+            </span>
+            <span className="hidden text-xs text-slate-500 md:inline">
+              Season of AI 2.0 · Final Capstone
+            </span>
           </div>
-          <div className="flex flex-wrap gap-2">
-            <span className="plate">05 Azure AI Services</span>
-            <span className="plate">01 Unified Pipeline</span>
-            <span className="plate">Live System</span>
-          </div>
-        </header>
 
-        {/* ---- Hero: problem statement + interactive 3D pipeline ---- */}
-        <section
-          aria-label="CivicPulse overview"
-          className="grid grid-cols-1 border-t border-slate-200 bg-slate-50/50 lg:grid-cols-12"
-        >
-          <div className="p-6 md:p-10 lg:col-span-5 lg:border-r lg:border-slate-200">
-            <p className="eyebrow">Overview</p>
-            <p className="mt-3 font-display text-2xl font-bold leading-tight text-slate-900 md:text-3xl lg:text-4xl">
-              A city hears every hazard.
-              <br />
-              And answers in seconds.
-            </p>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-slate-600">
-              Residents report broken pipes, dark streets and flooded roads by voice and photo.
-              CivicPulse listens, looks, scores the urgency, cites the bylaw and writes the dispatch
-              plan — five Azure AI services acting as one operator.
-            </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <a className="gold-cta" href="#simulator">
-                Try Live Simulator
-                <span aria-hidden className="arrow">
-                  ↓
-                </span>
-              </a>
-              <a className="ghost-cta" href="#architecture">
-                System Topology
-                <span aria-hidden className="arrow">
-                  →
-                </span>
-              </a>
-            </div>
-            <p className="mt-5 text-xs text-slate-500 font-mono">
-              Hover over or drag the 3D scene to steer the model
-            </p>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="badge-console">
+              <span className="h-2 w-2 bg-[#C9F031] animate-pulse" /> SYSTEM ONLINE
+            </span>
+            <span className="badge-console">05 AZURE SERVICES</span>
           </div>
-          <div className="p-4 md:p-8 lg:col-span-7">
-            <DeferredHeroScene />
+        </div>
+      </header>
+
+      <div className="mx-auto max-w-7xl px-4 py-8 lg:px-8 lg:py-12">
+        {/* ---- 1. HERO SECTION: Full-bleed, large off-center headline ---- */}
+        <section aria-label="Hero Console" className="relative">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, staggerChildren: 0.1 }}
+            className="grid grid-cols-1 gap-8 lg:grid-cols-12"
+          >
+            <div className="flex flex-col justify-between lg:col-span-6">
+              <div>
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="inline-flex items-center gap-2 border-2 border-[#FF3B1F] bg-[#1A0B0B] px-3 py-1 font-mono text-xs font-bold text-[#FF3B1F]"
+                >
+                  <span className="h-2 w-2 bg-[#FF3B1F] animate-ping" />
+                  MUNICIPAL EMERGENCY TRIAGE OPERATOR
+                </motion.div>
+
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 }}
+                  className="mt-4 font-display text-4xl font-black leading-none text-[#F3F0E9] sm:text-5xl md:text-6xl lg:text-7xl"
+                >
+                  A CITY HEARS EVERY HAZARD.
+                  <br />
+                  <span className="text-[#C9F031]">AND ANSWERS IN SECONDS.</span>
+                </motion.h2>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="mt-6 max-w-xl font-mono text-sm leading-relaxed text-slate-300"
+                >
+                  Residents report broken pipes, live wires, and flooded underpasses via voice notes & photos.
+                  CivicPulse transcribes, analyzes evidence, scores urgency, cites municipal bylaws, and drafts work orders — 5 Azure AI microservices acting as one operator.
+                </motion.p>
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="mt-8 flex flex-wrap items-center gap-4"
+              >
+                <a className="btn-dispatch text-base" href="#simulator">
+                  INITIALIZE DISPATCH SIMULATOR
+                  <span>↓</span>
+                </a>
+
+                <a className="btn-signal text-base" href="#services">
+                  EXPLORE 5 MODULES
+                  <span>→</span>
+                </a>
+              </motion.div>
+            </div>
+
+            {/* ---- 2. SIGNATURE 3D R3F DISPATCH CONDUIT ELEMENT ---- */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="lg:col-span-6"
+            >
+              <DispatchPipe3D
+                activeStageIndex={activeStage}
+                onSelectStage={(idx) => setActiveStage(idx)}
+              />
+            </motion.div>
+          </motion.div>
+        </section>
+
+        {/* ---- 3. PIPELINE DETAIL STRIP (5 Stages as Horizontal Bento Row) ---- */}
+        <section aria-label="Pipeline Detail Strip" className="mt-12">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-slate-800 pb-4">
+            <div>
+              <div className="badge-console">
+                <span>⚡</span> MICROSERVICE PIPELINE STRIP
+              </div>
+              <h3 className="mt-2 font-display text-xl font-black text-[#F3F0E9] md:text-2xl">
+                5-STAGE AZURE AI DATA HIGHWAY
+              </h3>
+            </div>
+            <span className="font-mono text-xs text-slate-400">
+              Click a card to activate stage on 3D conduit
+            </span>
+          </div>
+
+          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5 font-mono">
+            {[
+              { idx: 0, name: "Speech STT", azure: "Azure Speech", color: "#2B6EFF", desc: "12s voice note in → Transcript out", stripe: "bg-[#2B6EFF]" },
+              { idx: 1, name: "Vision Evidence", azure: "Azure Vision", color: "#C9F031", desc: "Photo input → OCR & Hazard tags", stripe: "bg-[#C9F031]" },
+              { idx: 2, name: "Language Triage", azure: "Azure Language", color: "#A855F7", desc: "Sentiment & Severity scoring", stripe: "bg-[#A855F7]" },
+              { idx: 3, name: "RAG Search", azure: "AI Search", color: "#F59E0B", desc: "Bylaw citation & 4h SLA match", stripe: "bg-[#F59E0B]" },
+              { idx: 4, name: "OpenAI Dispatch", azure: "Azure OpenAI", color: "#FF3B1F", desc: "Work Order WO-9482 + Resident SMS", stripe: "bg-[#FF3B1F]" },
+            ].map((st) => {
+              const isActive = activeStage === st.idx;
+              return (
+                <button
+                  key={st.name}
+                  type="button"
+                  onClick={() => setActiveStage(st.idx)}
+                  className={`card-paper relative overflow-hidden flex flex-col justify-between p-4 text-left cursor-pointer transition-all ${
+                    isActive ? "ring-3 ring-[#C9F031] scale-[1.02] shadow-hard-lg" : ""
+                  }`}
+                >
+                  <div className={`absolute top-0 left-0 right-0 h-2 ${st.stripe}`} />
+                  <div>
+                    <div className="flex items-center justify-between text-[10px] font-bold text-slate-500">
+                      <span>STAGE 0{st.idx + 1}</span>
+                      {isActive && <span className="bg-black text-[#C9F031] px-1.5 py-0.5">ACTIVE</span>}
+                    </div>
+                    <h4 className="mt-2 font-display text-base font-black text-[#0B0C0E]">{st.name}</h4>
+                    <p className="text-[11px] font-bold text-slate-600">{st.azure}</p>
+                  </div>
+
+                  <div className="mt-4 border-t border-slate-300 pt-2 text-[10px] text-slate-800 leading-tight">
+                    {st.desc}
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </section>
 
-        {/* ---- Interactive 5-Service Pipeline Simulator ---- */}
-        <PipelineSimulator />
+        {/* ---- 4. LIVE TRIAGE SIMULATOR ---- */}
+        <div className="mt-12">
+          <PipelineSimulator />
+        </div>
 
-        {/* ---- Case study: the real-world pipeline ---- */}
-        <CaseStudy />
+        {/* ---- 5. CASE STUDY ---- */}
+        <div className="mt-12">
+          <CaseStudy />
+        </div>
 
-        {/* ---- System Architecture Topology ---- */}
-        <ArchitectureDiagram />
+        {/* ---- 6. SYSTEM TOPOLOGY ---- */}
+        <div className="mt-12">
+          <ArchitectureDiagram />
+        </div>
 
-        {/* ---- Module rack ---- */}
-        <section
-          id="services"
-          className="scroll-mt-6 border-t border-slate-200 bg-white p-6 md:p-8"
-          aria-label="Live modules"
-        >
-          <div className="flex flex-wrap items-end justify-between gap-3">
+        {/* ---- 7. LIVE MODULES RACK ---- */}
+        <section id="services" className="mt-12 scroll-mt-6">
+          <div className="flex flex-wrap items-end justify-between gap-4 border-b-2 border-slate-800 pb-4">
             <div>
-              <p className="eyebrow">Architecture</p>
-              <h2 className="mt-1 font-display text-xl font-bold text-slate-900 md:text-3xl">Live Azure AI Modules</h2>
+              <div className="badge-console">
+                <span>📦</span> DEPLOYED MICROSERVICES
+              </div>
+              <h2 className="mt-2 font-display text-2xl font-black text-[#F3F0E9] md:text-3xl">
+                LIVE AZURE AI MODULES
+              </h2>
             </div>
-            <p className="text-xs font-mono text-slate-500">
+            <span className="font-mono text-xs text-slate-400">
               {services.length} deployments · interactive card controls
-            </p>
+            </span>
           </div>
-          <div className="mt-4 h-px w-full bg-slate-100" />
+
           <div className="mt-6">
             <ServiceGrid />
           </div>
         </section>
 
-        {/* ---- Season of AI 2.0 Scorecard ---- */}
-        <CapstoneScorecard />
-
-        {/* ---- Rationale bento ---- */}
-        <section className="border-t border-slate-200 bg-slate-50/60 p-6 md:p-8" aria-label="Why it qualifies">
-          <p className="eyebrow">Key Highlights</p>
-          <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-6">
-            <div className="md:col-span-4">
-              <TiltCard className="tint-grey" intensity={4}>
-                <p className="text-xs font-semibold uppercase tracking-wider text-indigo-600">End-to-End Orchestration</p>
-                <p className="mt-2 font-display text-lg font-semibold leading-tight text-slate-900 md:text-2xl">
-                  Voice and image in, retrieval and reasoning in the middle, a dispatch plan out.
-                </p>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                  Every module is deployed independently, then chained into one civic workflow — so
-                  the pipeline solves a real municipal problem instead of demoing an API.
-                </p>
-              </TiltCard>
-            </div>
-            <div className="md:col-span-2">
-              <TiltCard className="tint-signal" intensity={5}>
-                <p className="stat-figure">5</p>
-                <p className="mt-2 text-sm font-medium text-slate-600">
-                  Azure AI services chained into one unified pipeline.
-                </p>
-              </TiltCard>
-            </div>
-            <div className="md:col-span-3">
-              <TiltCard className="tint-sand" intensity={5}>
-                <p className="stat-figure">4h</p>
-                <p className="mt-2 text-sm font-medium text-slate-600">
-                  SLA pulled straight from cited municipal bylaws.
-                </p>
-              </TiltCard>
-            </div>
-            <div className="md:col-span-3">
-              <TiltCard className="tint-mint" intensity={5}>
-                <p className="stat-figure">0</p>
-                <p className="mt-2 text-sm font-medium text-slate-600">
-                  External redirects — full interactive execution inside showcase.
-                </p>
-              </TiltCard>
-            </div>
-          </div>
-        </section>
-
-        {/* ---- Status footer ---- */}
-        <footer className="overflow-hidden border-t border-slate-200 bg-slate-100 px-4 py-2.5">
-          <div className="ticker text-slate-600" aria-hidden>
-            {TICKER}
-            {TICKER}
-          </div>
-          <p className="sr-only">
-            CivicPulse — a Season of AI 2.0 capstone built with Azure OpenAI, AI Search, Speech,
-            Vision and Language.
-          </p>
-        </footer>
+        {/* ---- 8. SCORECARD (Uneven Bento Weights: 2 Large + 3 Small) ---- */}
+        <div className="mt-12">
+          <CapstoneScorecard />
+        </div>
       </div>
+
+      {/* ---- 9. FOOTER: Dot-Matrix LED Readout Marquee ---- */}
+      <footer className="dot-matrix overflow-hidden py-3 text-center">
+        <div className="ticker" aria-hidden>
+          {TICKER}
+          {TICKER}
+        </div>
+        <p className="sr-only">
+          CivicPulse — Season of AI 2.0 Capstone built with Azure OpenAI, AI Search, Speech, Vision, and Language.
+        </p>
+      </footer>
 
       <LucidLoader />
       <OnboardingTour />
     </main>
   );
 }
+
+export default Index;
