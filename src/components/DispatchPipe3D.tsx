@@ -60,13 +60,13 @@ function NeuralRingScene({ activeIndex }: { activeIndex: number }) {
 
   return (
     <group ref={groupRef}>
-      {/* Sleek Torus Bus Conduit */}
+      {/* Metallic Conduit Torus */}
       <mesh ref={ringRef} rotation={[0, 0, Math.PI / 2]}>
         <cylinderGeometry args={[0.22, 0.22, 8.2, 32]} />
         <meshStandardMaterial
-          color="#475569"
-          roughness={0.3}
-          metalness={0.6}
+          color="#1E293B"
+          roughness={0.2}
+          metalness={0.7}
         />
       </mesh>
 
@@ -93,7 +93,7 @@ function NeuralRingScene({ activeIndex }: { activeIndex: number }) {
               <meshStandardMaterial
                 color={node.color}
                 emissive={node.color}
-                emissiveIntensity={isActive ? 1.5 : 0.4}
+                emissiveIntensity={isActive ? 1.6 : 0.5}
                 roughness={0.1}
               />
             </mesh>
@@ -146,16 +146,16 @@ export function DispatchPipe3D({
   }, []);
 
   return (
-    <div className="card-light relative h-[360px] w-full overflow-hidden bg-[#F8FAFC]">
-      {/* Header Bar */}
-      <div className="flex flex-wrap items-center justify-between border-b border-slate-200 bg-white px-5 py-3 text-xs font-mono">
+    <div className="card-warm relative h-[360px] w-full overflow-hidden bg-[#EAE7E1]">
+      {/* Dark Slate Top Bar */}
+      <div className="flex flex-wrap items-center justify-between border-b border-slate-700 bg-[#0F172A] px-5 py-3 text-xs font-mono text-white">
         <div className="flex items-center gap-2.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-blue-600 animate-pulse" />
-          <span className="font-extrabold text-slate-900 tracking-wide">
+          <span className="h-2.5 w-2.5 rounded-full bg-cyan-400 animate-pulse" />
+          <span className="font-extrabold text-white tracking-wide">
             3D AZURE AI CONDUIT
           </span>
         </div>
-        <span className="text-slate-500 font-medium">
+        <span className="text-slate-300 font-medium">
           Drag to rotate 3D pipeline · Click stage node below
         </span>
       </div>
@@ -166,7 +166,7 @@ export function DispatchPipe3D({
           <p className="font-display text-lg font-bold text-blue-600">
             AZURE AI PIPELINE CONDUIT
           </p>
-          <p className="mt-2 font-mono text-xs text-slate-600">
+          <p className="mt-2 font-mono text-xs text-slate-700">
             [5-Stage Highway: Speech → Vision → Language → RAG → OpenAI]
           </p>
         </div>
@@ -181,7 +181,7 @@ export function DispatchPipe3D({
       )}
 
       {/* Stage Selector Pill Row */}
-      <div className="absolute bottom-3 left-3 right-3 flex flex-wrap justify-center gap-2 bg-white/95 p-2 rounded-xl border border-slate-200 shadow-sm">
+      <div className="absolute bottom-3 left-3 right-3 flex flex-wrap justify-center gap-2 bg-[#0F172A] p-2.5 rounded-xl border border-slate-700 shadow-md">
         {STAGE_NODES.map((node, idx) => {
           const isActive = idx === activeStageIndex;
           return (
@@ -192,7 +192,7 @@ export function DispatchPipe3D({
               className={`px-3 py-1.5 text-[11px] font-mono font-bold rounded-lg transition-all ${
                 isActive
                   ? "bg-blue-600 text-white shadow-sm"
-                  : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                  : "bg-slate-800 text-slate-300 hover:bg-slate-700"
               }`}
             >
               0{idx + 1}. {node.name}

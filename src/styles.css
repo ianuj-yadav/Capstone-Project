@@ -6,16 +6,16 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * CivicPulse — Anti-Slop Pristine Light Theme Design System
- * Studio White Canvas #FAFAFA, Pure White Cards #FFFFFF, Ink #0F172A, Royal Azure #2563EB, Slate #64748B
+ * CivicPulse — Balanced Warm Paper & High-Contrast Design System
+ * Warm Neutral Canvas #F5F3EF, Deep Slate Accents #0F172A, Crisp White Surfaces #FFFFFF, Royal Blue #2563EB
  */
 
 @theme inline {
-  --color-canvas: #FAFAFA;
+  --color-canvas: #F5F3EF;
   --color-paper: #FFFFFF;
   --color-ink: #0F172A;
   
-  --color-background: #FAFAFA;
+  --color-background: #F5F3EF;
   --color-foreground: #0F172A;
   --color-card: #FFFFFF;
   --color-card-foreground: #0F172A;
@@ -25,12 +25,12 @@
   --color-primary-foreground: #FFFFFF;
   --color-secondary: #059669;
   --color-secondary-foreground: #FFFFFF;
-  --color-muted: #F1F5F9;
-  --color-muted-foreground: #64748B;
+  --color-muted: #EAE7E1;
+  --color-muted-foreground: #475569;
   --color-accent: #2563EB;
   --color-accent-foreground: #FFFFFF;
-  --color-border: #E2E8F0;
-  --color-input: #E2E8F0;
+  --color-border: #D1D5DB;
+  --color-input: #E5E7EB;
   --color-ring: #2563EB;
 
   --font-display: "Plus Jakarta Sans", sans-serif;
@@ -39,17 +39,17 @@
 }
 
 :root {
-  --background: #FAFAFA;
+  --background: #F5F3EF;
   --foreground: #0F172A;
 }
 
 @layer base {
   * {
-    border-color: #E2E8F0;
+    border-color: #D1D5DB;
   }
 
   body {
-    background-color: #FAFAFA;
+    background-color: #F5F3EF;
     color: #0F172A;
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -63,22 +63,51 @@
   }
 }
 
-/* ---------- Pristine Light Card & Button Utilities ---------- */
+/* ---------- Balanced Section & Card Utilities ---------- */
 
-@utility card-light {
+@utility section-slate {
+  background-color: #0F172A;
+  color: #F8FAFC;
+  border-radius: 1.5rem !important;
+}
+
+@utility section-sand {
+  background-color: #EAE7E1;
+  color: #0F172A;
+  border: 1px solid #D1D5DB;
+  border-radius: 1.5rem !important;
+}
+
+@utility card-warm {
   background-color: #FFFFFF;
   color: #0F172A;
-  border: 1px solid #E2E8F0;
-  border-radius: 1rem !important;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+  border: 1px solid #D1D5DB;
+  border-radius: 1.25rem !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
   transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 200ms cubic-bezier(0.16, 1, 0.3, 1), border-color 200ms ease;
 }
 
-@utility card-light {
+@utility card-warm {
   &:hover {
-    transform: translateY(-2px);
-    border-color: #CBD5E1;
-    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+    transform: translateY(-3px);
+    border-color: #9CA3AF;
+    box-shadow: 0 12px 28px -5px rgba(15, 23, 42, 0.12), 0 8px 10px -6px rgba(15, 23, 42, 0.06);
+  }
+}
+
+@utility card-slate {
+  background-color: #0F172A;
+  color: #F8FAFC;
+  border: 1px solid #334155;
+  border-radius: 1.25rem !important;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.3);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+@utility card-slate {
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px -5px rgba(15, 23, 42, 0.4);
   }
 }
 
@@ -94,7 +123,7 @@
   font-weight: 700;
   padding: 0.75rem 1.5rem;
   border-radius: 0.75rem !important;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
   cursor: pointer;
   transition: transform 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
 }
@@ -103,35 +132,33 @@
   &:hover {
     background-color: #1D4ED8;
     transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.4);
   }
   &:active {
     transform: translateY(1px);
   }
 }
 
-@utility btn-secondary {
+@utility btn-dark {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background-color: #FFFFFF;
-  color: #0F172A;
+  background-color: #0F172A;
+  color: #FFFFFF;
   font-family: var(--font-sans);
   font-size: 0.875rem;
   font-weight: 700;
   padding: 0.75rem 1.5rem;
-  border: 1px solid #E2E8F0;
   border-radius: 0.75rem !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
   cursor: pointer;
-  transition: transform 150ms ease, background-color 150ms ease, border-color 150ms ease;
+  transition: transform 150ms ease, background-color 150ms ease;
 }
 
-@utility btn-secondary {
+@utility btn-dark {
   &:hover {
-    background-color: #F8FAFC;
-    border-color: #CBD5E1;
+    background-color: #1E293B;
     transform: translateY(-1px);
   }
   &:active {
@@ -139,13 +166,13 @@
   }
 }
 
-@utility badge-light {
+@utility badge-warm {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  background-color: #F1F5F9;
-  color: #334155;
-  border: 1px solid #E2E8F0;
+  background-color: #EAE7E1;
+  color: #1E293B;
+  border: 1px solid #D1D5DB;
   padding: 0.25rem 0.75rem;
   border-radius: 9999px !important;
   font-family: var(--font-mono);
@@ -154,7 +181,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .card-light, .btn-primary, .btn-secondary {
+  .card-warm, .card-slate, .btn-primary, .btn-dark {
     transition: none !important;
     transform: none !important;
   }
