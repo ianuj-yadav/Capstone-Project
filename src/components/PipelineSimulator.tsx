@@ -122,9 +122,11 @@ export function PipelineSimulator() {
       </div>
 
       {/* Preset Selector Pill Buttons */}
-      <div className="mt-6 flex flex-wrap gap-3">
+      <div className="mt-8 flex flex-wrap justify-center md:justify-start gap-4">
         {PRESETS.map((p) => (
-          <button
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             key={p.id}
             type="button"
             onClick={() => {
@@ -133,20 +135,23 @@ export function PipelineSimulator() {
               setCompleted(false);
               setCurrentStep(0);
             }}
-            className={`px-4 py-2.5 text-xs font-bold rounded-2xl transition-all border ${
+            className={`px-5 py-3 text-sm font-black rounded-full transition-all border-2 shadow-sm ${
               selectedPreset.id === p.id && !customText
-                ? "bg-blue-600 text-white border-blue-600 shadow-md shadow-blue-500/25 scale-105"
-                : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50"
+                ? "bg-gradient-to-r from-pink-500 to-purple-600 text-white border-transparent shadow-[0_10px_20px_-5px_rgba(236,72,153,0.4)]"
+                : "bg-white/60 backdrop-blur-sm text-slate-700 border-white hover:bg-white hover:border-pink-300"
             }`}
           >
             {p.name}
-          </button>
+          </motion.button>
         ))}
       </div>
 
       {/* Console Input Container */}
-      <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50/80 p-6">
-        <label htmlFor="custom-voice" className="text-xs font-extrabold uppercase tracking-wide text-slate-900">
+      <motion.div 
+        layout
+        className="mt-8 rounded-3xl border-2 border-white/80 bg-white/40 backdrop-blur-xl p-6 shadow-xl"
+      >
+        <label htmlFor="custom-voice" className="text-xs font-black uppercase tracking-widest text-indigo-900 drop-shadow-sm">
           [CONSOLE INPUT] Resident Voice / Text Report
         </label>
         <textarea
@@ -155,70 +160,73 @@ export function PipelineSimulator() {
           value={customText}
           onChange={(e) => setCustomText(e.target.value)}
           placeholder={`Type custom report... (Default: "${selectedPreset.voiceText}")`}
-          className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3.5 font-mono text-xs text-slate-900 font-medium focus:outline-none focus:ring-2 focus:ring-blue-600 shadow-sm"
+          className="mt-3 w-full rounded-2xl border-2 border-white/80 bg-white/80 p-4 font-mono text-sm text-slate-900 font-medium focus:outline-none focus:border-pink-400 focus:ring-4 focus:ring-pink-400/20 shadow-inner transition-all placeholder:text-slate-400"
         />
 
-        <div className="mt-4 flex flex-wrap items-center justify-between gap-4 border-t border-slate-200 pt-4 text-xs font-medium">
-          <div className="flex flex-wrap items-center gap-4 text-slate-600">
-            <span>LOCATION: <strong className="text-slate-900 font-bold">{selectedPreset.location}</strong></span>
-            <span>TARGET SLA: <strong className="text-red-600 font-bold">{selectedPreset.slaHours} HOURS</strong></span>
+        <div className="mt-6 flex flex-wrap items-center justify-between gap-6 border-t border-white/50 pt-6 text-sm font-bold">
+          <div className="flex flex-wrap items-center gap-6 text-slate-700 bg-white/50 px-5 py-2.5 rounded-full shadow-sm">
+            <span>LOCATION: <strong className="text-indigo-900 font-black">{selectedPreset.location}</strong></span>
+            <span>TARGET SLA: <strong className="text-pink-600 font-black">{selectedPreset.slaHours} HOURS</strong></span>
           </div>
 
-          <button
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             type="button"
             onClick={handleRunPipeline}
             disabled={isRunning}
-            className="btn-saas-primary disabled:opacity-50"
+            className="btn-saas-primary shadow-[0_10px_30px_-10px_rgba(236,72,153,0.5)] disabled:opacity-60 disabled:hover:scale-100"
           >
             {isRunning ? (
               <>
-                <span className="h-3 w-3 rounded-full border-2 border-white border-t-transparent animate-spin" />
-                EXECUTING ({ (executionTime / 1000).toFixed(1) }s)...
+                <span className="h-4 w-4 rounded-full border-2 border-white border-t-transparent animate-spin" />
+                EXECUTING ({ (executionTime / 1000).toFixed(1) }s)
               </>
             ) : (
               <>
                 RUN 5-SERVICE PIPELINE
-                <span>→</span>
+                <span className="text-xl leading-none">→</span>
               </>
             )}
-          </button>
+          </motion.button>
         </div>
-      </div>
+      </motion.div>
 
       {/* Progress Pipeline Steps */}
-      <div className="mt-8 grid grid-cols-1 gap-3 md:grid-cols-5 text-xs font-medium">
+      <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-5 text-sm font-bold">
         {[
-          { step: 1, name: "1. SPEECH STT", azure: "Azure Speech", icon: "🎙️", color: "bg-blue-600" },
-          { step: 2, name: "2. VISION OCR", azure: "Azure Vision", icon: "🖼️", color: "bg-emerald-600" },
-          { step: 3, name: "3. LANGUAGE", azure: "Azure Language", icon: "📊", color: "bg-purple-600" },
-          { step: 4, name: "4. RAG SEARCH", azure: "AI Search", icon: "📚", color: "bg-amber-600" },
-          { step: 5, name: "5. OPENAI DISPATCH", azure: "Azure OpenAI", icon: "⚡", color: "bg-red-600" },
+          { step: 1, name: "1. SPEECH STT", azure: "Azure Speech", icon: "🎙️", color: "from-blue-400 to-indigo-500" },
+          { step: 2, name: "2. VISION OCR", azure: "Azure Vision", icon: "🖼️", color: "from-emerald-400 to-teal-500" },
+          { step: 3, name: "3. LANGUAGE", azure: "Azure Language", icon: "📊", color: "from-purple-400 to-pink-500" },
+          { step: 4, name: "4. RAG SEARCH", azure: "AI Search", icon: "📚", color: "from-amber-400 to-orange-500" },
+          { step: 5, name: "5. OPENAI DISPATCH", azure: "Azure OpenAI", icon: "⚡", color: "from-rose-400 to-red-500" },
         ].map((st) => {
           const isActive = currentStep === st.step && isRunning;
           const isDone = currentStep > st.step || completed;
           return (
-            <div
+            <motion.div
+              layout
               key={st.step}
-              className={`relative overflow-hidden rounded-2xl p-4 transition-all border ${
+              className={`relative overflow-hidden rounded-[2rem] p-5 transition-all border-2 ${
                 isActive
-                  ? "bg-white border-blue-600 shadow-md shadow-blue-500/20 scale-105"
+                  ? "bg-white/90 border-pink-400 shadow-[0_20px_40px_-10px_rgba(236,72,153,0.3)] scale-105 z-10 backdrop-blur-lg"
                   : isDone
-                    ? "bg-slate-50 border-emerald-300 text-slate-900"
-                    : "bg-slate-100/60 border-slate-200 text-slate-500"
+                    ? "bg-white/70 border-emerald-300 text-slate-900 shadow-sm backdrop-blur-md"
+                    : "bg-white/40 border-white/50 text-slate-500 backdrop-blur-sm"
               }`}
             >
-              <div className={`absolute top-0 left-0 right-0 h-1.5 ${st.color}`} />
-              <div className="flex items-center justify-between mt-1">
-                <span className="text-base">{st.icon}</span>
-                <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
-                  isDone ? "bg-emerald-100 text-emerald-800" : isActive ? "bg-blue-600 text-white" : "bg-slate-200 text-slate-600"
+              <div className={`absolute top-0 left-0 right-0 h-2 bg-gradient-to-r ${st.color} ${isActive ? 'opacity-100' : 'opacity-70'}`} />
+              <div className="flex items-center justify-between mt-2">
+                <span className="text-2xl drop-shadow-sm">{st.icon}</span>
+                <span className={`text-[10px] font-black px-3 py-1 rounded-full shadow-inner ${
+                  isDone ? "bg-emerald-100 text-emerald-800" : isActive ? "bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-md" : "bg-white/60 text-slate-500"
                 }`}>
                   {isDone ? "DONE" : isActive ? "ACTIVE" : "WAIT"}
                 </span>
               </div>
-              <h4 className="mt-2 font-display text-sm font-bold text-slate-900">{st.name}</h4>
-              <p className="text-[10px] text-slate-500 font-mono">{st.azure}</p>
-            </div>
+              <h4 className="mt-4 font-display text-base font-black text-slate-900 tracking-tight">{st.name}</h4>
+              <p className="text-xs text-indigo-600/80 font-mono font-bold mt-1">{st.azure}</p>
+            </motion.div>
           );
         })}
       </div>

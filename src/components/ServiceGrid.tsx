@@ -423,25 +423,25 @@ export function ServiceGrid() {
             <span className="glyph" aria-hidden>
               {s.glyph}
             </span>
-            <p className="text-xs font-mono font-semibold uppercase tracking-wider text-indigo-600">{s.azure}</p>
-            <h3 className="mt-2 text-xl font-bold leading-tight text-slate-900 font-display">
+            <p className="text-xs font-mono font-black uppercase tracking-widest text-pink-500 mt-2">{s.azure}</p>
+            <h3 className="mt-3 text-2xl font-black leading-tight text-slate-900 font-display">
               {s.name}
             </h3>
-            <p className="mt-2 text-sm leading-relaxed text-slate-600">{s.blurb}</p>
-            <ul className="mt-4 flex flex-wrap gap-1.5">
+            <p className="mt-3 text-sm leading-relaxed text-slate-700 font-medium">{s.blurb}</p>
+            <ul className="mt-6 flex flex-wrap gap-2">
               {s.capabilities.map((c) => (
-                <li key={c} className="chip">
+                <li key={c} className="chip bg-white/60 backdrop-blur-sm border-white/50 text-indigo-800 font-bold px-3 py-1 text-xs rounded-full shadow-sm">
                   {c}
                 </li>
               ))}
             </ul>
-            <div className="relative z-20 mt-6 flex flex-wrap items-center gap-3">
+            <div className="relative z-20 mt-8 flex flex-wrap items-center gap-4">
               <span
-                className="link-cta pointer-events-none"
+                className="link-cta pointer-events-none text-pink-600 font-black text-sm"
                 {...(idx === 0 ? { "data-tour": "details" } : {})}
               >
                 View details
-                <span aria-hidden className="arrow">
+                <span aria-hidden className="arrow ml-1">
                   →
                 </span>
               </span>
@@ -449,7 +449,7 @@ export function ServiceGrid() {
                 to="/demo/$serviceId"
                 params={{ serviceId: s.id }}
                 preload="intent"
-                className="text-xs font-semibold text-slate-700 hover:text-blue-600 transition-colors"
+                className="text-xs font-black text-slate-400 hover:text-indigo-600 transition-colors bg-white/50 px-4 py-2 rounded-full hover:bg-white hover:shadow-md"
                 onClick={(e) => e.stopPropagation()}
                 {...(idx === 0 ? { "data-tour": "open-module" } : {})}
               >
