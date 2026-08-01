@@ -423,19 +423,19 @@ export function ServiceGrid() {
             <span className="glyph" aria-hidden>
               {s.glyph}
             </span>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">{s.azure}</p>
-            <h3 className="mt-3 text-2xl font-semibold leading-tight text-card-foreground">
+            <p className="text-xs font-mono font-semibold uppercase tracking-wider text-indigo-600">{s.azure}</p>
+            <h3 className="mt-2 text-xl font-bold leading-tight text-slate-900 font-display">
               {s.name}
             </h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.blurb}</p>
-            <ul className="mt-5 flex flex-wrap gap-2">
+            <p className="mt-2 text-sm leading-relaxed text-slate-600">{s.blurb}</p>
+            <ul className="mt-4 flex flex-wrap gap-1.5">
               {s.capabilities.map((c) => (
                 <li key={c} className="chip">
                   {c}
                 </li>
               ))}
             </ul>
-            <div className="relative z-20 mt-6 flex flex-wrap items-center gap-4">
+            <div className="relative z-20 mt-6 flex flex-wrap items-center gap-3">
               <span
                 className="link-cta pointer-events-none"
                 {...(idx === 0 ? { "data-tour": "details" } : {})}
@@ -449,7 +449,7 @@ export function ServiceGrid() {
                 to="/demo/$serviceId"
                 params={{ serviceId: s.id }}
                 preload="intent"
-                className="text-sm font-medium text-accent underline-offset-4 hover:underline"
+                className="text-xs font-semibold text-slate-700 hover:text-blue-600 transition-colors"
                 onClick={(e) => e.stopPropagation()}
                 {...(idx === 0 ? { "data-tour": "open-module" } : {})}
               >
@@ -461,17 +461,17 @@ export function ServiceGrid() {
         ))}
         {visible.length === services.length && (
           <TiltCard className="tint-grey">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+            <p className="text-xs font-mono font-semibold uppercase tracking-wider text-indigo-600">
               Architecture
             </p>
-            <h3 className="mt-3 text-2xl font-semibold leading-tight text-card-foreground">
+            <h3 className="mt-2 text-xl font-bold leading-tight text-slate-900 font-display">
               One product, five services
             </h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-2 text-sm leading-relaxed text-slate-600">
               Each module is deployed independently and composed into a single mini product: voice
               or image in, retrieval and reasoning in the middle, language analytics out.
             </p>
-            <ol className="flow mt-5">
+            <ol className="flow mt-4">
               <li>Capture — Speech / Vision</li>
               <li>Understand — Language</li>
               <li>Ground — RAG over documents</li>

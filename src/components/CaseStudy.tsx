@@ -93,15 +93,15 @@ export function CaseStudy() {
     <section
       id="case-study"
       aria-label="CivicPulse case study"
-      className="scroll-mt-6 border-t lucid-divide tint-skin p-6"
+      className="scroll-mt-6 border-t border-slate-200 bg-white p-6 md:p-8"
     >
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <p className="label-mono">The_problem</p>
-          <h2 className="mt-2 font-display text-xl md:text-3xl">
-            CivicPulse — city hazard reports, triaged in seconds
+          <p className="eyebrow">Pipeline Workflow</p>
+          <h2 className="mt-1 font-display text-xl font-bold text-slate-900 md:text-3xl">
+            City hazard reports, triaged in seconds
           </h2>
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">
             City call centres drown in unstructured complaints: voice notes, photos and half-typed
             addresses. Crews are dispatched late, and residents never hear back. CivicPulse chains
             five Azure AI services into one pipeline that listens, sees, scores, checks the rulebook
@@ -114,9 +114,9 @@ export function CaseStudy() {
             { k: "5", v: "AI services chained" },
             { k: "1", v: "dispatch plan out" },
           ].map((s) => (
-            <div key={s.v} className="glass-panel p-3">
-              <dt className="stat-figure text-2xl md:text-3xl">{s.k}</dt>
-              <dd className="label-mono mt-1 text-muted-foreground">{s.v}</dd>
+            <div key={s.v} className="glass-panel p-3 text-center">
+              <dt className="stat-figure text-2xl font-bold text-slate-900 md:text-3xl">{s.k}</dt>
+              <dd className="mt-1 text-xs font-medium text-slate-500">{s.v}</dd>
             </div>
           ))}
         </dl>
@@ -140,7 +140,7 @@ export function CaseStudy() {
               }}
               className={`stage-chip ${i === active ? "stage-chip-active" : ""}`}
             >
-              <span className="label-mono">{String(i + 1).padStart(2, "0")}</span>
+              <span className="font-mono text-xs font-semibold">{String(i + 1).padStart(2, "0")}</span>
               <span>{s.service}</span>
             </button>
           </li>
@@ -153,14 +153,14 @@ export function CaseStudy() {
         role="tabpanel"
         id={`stage-panel-${stage.id}`}
         aria-labelledby={`stage-tab-${stage.id}`}
-        className={`stage-panel mt-5 grid grid-cols-1 gap-5 p-5 lg:grid-cols-12 ${stage.tint}`}
+        className={`stage-panel mt-5 grid grid-cols-1 gap-5 p-6 lg:grid-cols-12 ${stage.tint}`}
       >
         <div className="lg:col-span-7">
-          <p className="label-mono text-muted-foreground">
+          <p className="text-xs font-mono font-semibold uppercase tracking-wider text-indigo-600">
             Stage {String(active + 1).padStart(2, "0")} · {stage.azure}
           </p>
-          <p className="mt-2 font-display text-lg leading-tight md:text-2xl">{stage.title}</p>
-          <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
+          <p className="mt-2 font-display text-lg font-bold leading-tight text-slate-900 md:text-2xl">{stage.title}</p>
+          <p className="mt-3 max-w-xl text-sm leading-relaxed text-slate-600">
             {stage.body}
           </p>
           <Link
@@ -176,12 +176,12 @@ export function CaseStudy() {
         </div>
         <div className="grid gap-3 lg:col-span-5">
           <div className="glass-panel p-4">
-            <p className="label-mono text-muted-foreground">Input</p>
-            <p className="mt-2 font-mono text-xs leading-relaxed">{stage.io.in}</p>
+            <p className="text-xs font-mono font-semibold text-slate-500 uppercase">Input</p>
+            <p className="mt-2 font-mono text-xs text-slate-700 leading-relaxed bg-slate-50 p-2.5 rounded-md border border-slate-100">{stage.io.in}</p>
           </div>
           <div className="glass-panel p-4">
-            <p className="label-mono text-muted-foreground">Output</p>
-            <p className="mt-2 font-mono text-xs leading-relaxed">{stage.io.out}</p>
+            <p className="text-xs font-mono font-semibold text-slate-500 uppercase">Output</p>
+            <p className="mt-2 font-mono text-xs text-slate-700 leading-relaxed bg-slate-50 p-2.5 rounded-md border border-slate-100">{stage.io.out}</p>
           </div>
         </div>
       </div>
