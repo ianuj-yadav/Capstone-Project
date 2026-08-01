@@ -1,5 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { createFileRoute } from "@tanstack/react-router";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { motion } from "framer-motion";
 import { ServiceGrid, services } from "@/components/ServiceGrid";
 import { OnboardingTour } from "@/components/OnboardingTour";
@@ -8,7 +8,37 @@ import { CaseStudy } from "@/components/CaseStudy";
 import { PipelineSimulator } from "@/components/PipelineSimulator";
 import { ArchitectureDiagram } from "@/components/ArchitectureDiagram";
 import { CapstoneScorecard } from "@/components/CapstoneScorecard";
-import { DispatchPipe3D } from "@/components/DispatchPipe3D";
+
+const DispatchPipe3D = lazy(() => import("@/components/DispatchPipe3D"));
+
+function DispatchPipeFallback() {
+  return (
+    <div className="relative flex h-[320px] w-full flex-col items-center justify-center border-3 border-[#000000] bg-[#0B0C0E] p-6 shadow-[6px_6px_0px_#000000] text-center font-mono">
+      <p className="font-display text-xl font-black text-[#FF3B1F]">
+        AZURE AI CONDUIT 3D
+      </p>
+      <p className="mt-2 text-xs font-bold text-[#C9F031]">
+        [INITIALIZING 3D PIPELINE CONDUIT...]
+      </p>
+    </div>
+  );
+}
+
+function ClientDispatchPipe3D({ activeStage, onSelectStage }: { activeStage: number; onSelectStage: (idx: number) => void }) {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) return <DispatchPipeFallback />;
+
+  return (
+    <Suspense fallback={<DispatchPipeFallback />}>
+      <DispatchPipe3D activeStageIndex={activeStage} onSelectStage={onSelectStage} />
+    </Suspense>
+  );
+}
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -124,15 +154,15 @@ export function Index() {
               </motion.div>
             </div>
 
-            {/* ---- 2. SIGNATURE 3D R3F DISPATCH CONDUIT ELEMENT ---- */}
+            {/* ---- 2. SIGNATURE 3D R3F DISPATCH CONDUIT ELEMENT (Client-Only Lazy Loaded) ---- */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
               className="lg:col-span-6"
             >
-              <DispatchPipe3D
-                activeStageIndex={activeStage}
+              <ClientDispatchPipe3D
+                activeStage={activeStage}
                 onSelectStage={(idx) => setActiveStage(idx)}
               />
             </motion.div>
