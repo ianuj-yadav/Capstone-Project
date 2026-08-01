@@ -9,7 +9,7 @@ type DispatchPipeProps = {
 };
 
 const STAGE_NODES = [
-  { name: "Speech", azure: "Azure Speech", color: "#2563EB", pos: [-3.5, 0, 0] },
+  { name: "Speech", azure: "Azure Speech", color: "#3B82F6", pos: [-3.5, 0, 0] },
   { name: "Vision", azure: "Azure Vision", color: "#10B981", pos: [-1.75, 0, 0] },
   { name: "Language", azure: "Azure Language", color: "#8B5CF6", pos: [0, 0, 0] },
   { name: "RAG Search", azure: "AI Search", color: "#F59E0B", pos: [1.75, 0, 0] },
@@ -22,7 +22,7 @@ function NeuralRingScene({ activeIndex }: { activeIndex: number }) {
   const particlesRef = useRef<THREE.Points>(null);
 
   // Particle positions
-  const particleCount = 120;
+  const particleCount = 130;
   const positions = useRef(new Float32Array(particleCount * 3));
   const speeds = useRef(new Float32Array(particleCount));
 
@@ -64,8 +64,8 @@ function NeuralRingScene({ activeIndex }: { activeIndex: number }) {
       <mesh ref={ringRef} rotation={[0, 0, Math.PI / 2]}>
         <cylinderGeometry args={[0.22, 0.22, 8.2, 32]} />
         <meshStandardMaterial
-          color="#334155"
-          roughness={0.25}
+          color="#1E293B"
+          roughness={0.2}
           metalness={0.8}
         />
       </mesh>
@@ -93,7 +93,7 @@ function NeuralRingScene({ activeIndex }: { activeIndex: number }) {
               <meshStandardMaterial
                 color={node.color}
                 emissive={node.color}
-                emissiveIntensity={isActive ? 1.8 : 0.6}
+                emissiveIntensity={isActive ? 2.0 : 0.6}
                 roughness={0.1}
               />
             </mesh>
@@ -102,7 +102,7 @@ function NeuralRingScene({ activeIndex }: { activeIndex: number }) {
             <Text
               position={[0, 0.75, 0]}
               fontSize={0.28}
-              color={isActive ? "#2563EB" : "#0F172A"}
+              color={isActive ? "#38BDF8" : "#94A3B8"}
               anchorX="center"
               anchorY="middle"
               font="https://fonts.gstatic.com/s/jetbrainsmono/v13/tB3g524-GGq3n53yAoTsdbI.woff"
@@ -123,7 +123,7 @@ function NeuralRingScene({ activeIndex }: { activeIndex: number }) {
         </bufferGeometry>
         <pointsMaterial
           size={0.09}
-          color={STAGE_NODES[activeIndex]?.color ?? "#2563EB"}
+          color={STAGE_NODES[activeIndex]?.color ?? "#38BDF8"}
           transparent
           opacity={0.85}
         />
@@ -148,17 +148,17 @@ export function DispatchPipe3D({
   return (
     <div className="glass-panel relative h-[360px] w-full overflow-hidden p-1">
       {/* Header Bar */}
-      <div className="flex flex-wrap items-center justify-between border-b border-slate-200/80 bg-white/60 px-5 py-3 text-xs font-mono backdrop-blur-md">
+      <div className="flex flex-wrap items-center justify-between border-b border-slate-700/60 bg-slate-900/60 px-5 py-3 text-xs font-mono backdrop-blur-md">
         <div className="flex items-center gap-2.5">
           <span className="relative flex h-2.5 w-2.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-indigo-400 opacity-75" />
-            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-indigo-600" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75" />
+            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-cyan-500" />
           </span>
-          <span className="font-extrabold text-slate-900 tracking-wide">
+          <span className="font-extrabold text-slate-100 tracking-wide">
             3D NEURAL DISPATCH CONDUIT
           </span>
         </div>
-        <span className="text-slate-500 font-medium">
+        <span className="text-slate-400 font-medium">
           Drag to rotate 3D pipeline · Click stage node below
         </span>
       </div>
@@ -166,17 +166,17 @@ export function DispatchPipe3D({
       {/* Canvas / Mobile Fallback */}
       {isMobile ? (
         <div className="flex h-[280px] flex-col items-center justify-center p-6 text-center">
-          <p className="font-display text-lg font-bold text-indigo-600">
+          <p className="font-display text-lg font-bold text-cyan-400">
             AZURE AI PIPELINE CONDUIT
           </p>
-          <p className="mt-2 font-mono text-xs text-slate-600">
+          <p className="mt-2 font-mono text-xs text-slate-400">
             [5-Stage Highway: Speech → Vision → Language → RAG → OpenAI]
           </p>
         </div>
       ) : (
         <Canvas camera={{ position: [0, 1.2, 7.5], fov: 48 }}>
-          <ambientLight intensity={0.9} />
-          <pointLight position={[10, 10, 10]} intensity={1.4} />
+          <ambientLight intensity={0.8} />
+          <pointLight position={[10, 10, 10]} intensity={1.5} />
           <pointLight position={[-10, -10, -10]} intensity={0.6} />
           <NeuralRingScene activeIndex={activeStageIndex} />
           <OrbitControls enableZoom={false} maxPolarAngle={Math.PI / 1.7} minPolarAngle={Math.PI / 3} />
@@ -184,7 +184,7 @@ export function DispatchPipe3D({
       )}
 
       {/* Stage Selector Pill Row */}
-      <div className="absolute bottom-3 left-3 right-3 flex flex-wrap justify-center gap-2 bg-white/80 p-2.5 backdrop-blur-md rounded-2xl border border-white/90 shadow-sm">
+      <div className="absolute bottom-3 left-3 right-3 flex flex-wrap justify-center gap-2 bg-slate-900/80 p-2.5 backdrop-blur-md rounded-2xl border border-slate-700/60 shadow-sm">
         {STAGE_NODES.map((node, idx) => {
           const isActive = idx === activeStageIndex;
           return (
@@ -194,8 +194,8 @@ export function DispatchPipe3D({
               onClick={() => onSelectStage?.(idx)}
               className={`px-3 py-1.5 text-[11px] font-mono font-bold rounded-xl transition-all ${
                 isActive
-                  ? "bg-indigo-600 text-white shadow-md shadow-indigo-500/25 scale-105"
-                  : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                  ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md shadow-indigo-500/30 scale-105"
+                  : "bg-slate-800 text-slate-300 hover:bg-slate-700"
               }`}
             >
               0{idx + 1}. {node.name}
