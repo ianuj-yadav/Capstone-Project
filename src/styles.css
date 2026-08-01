@@ -6,53 +6,51 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * CivicPulse — Ultra-Cool Cyber Light & Neo-Bento Operating System Design System
- * Micro-Grid Canvas #F4F2EC, Void Ink #0B0F19, Electric Cobalt #2563EB, Cyber Mint #059669
+ * CivicPulse — Ultimate SaaS / Swiss Light Glassmorphism Design System
+ * Soft Slate Canvas #F8FAFC, Translucent Frosted Glass, Ink #0F172A, Royal Azure #2563EB
  */
 
 @theme inline {
-  --color-canvas: #F4F2EC;
+  --color-canvas: #F8FAFC;
   --color-paper: #FFFFFF;
-  --color-ink: #0B0F19;
+  --color-ink: #0F172A;
   
-  --color-background: #F4F2EC;
-  --color-foreground: #0B0F19;
+  --color-background: #F8FAFC;
+  --color-foreground: #0F172A;
   --color-card: #FFFFFF;
-  --color-card-foreground: #0B0F19;
+  --color-card-foreground: #0F172A;
   --color-popover: #FFFFFF;
-  --color-popover-foreground: #0B0F19;
+  --color-popover-foreground: #0F172A;
   --color-primary: #2563EB;
   --color-primary-foreground: #FFFFFF;
   --color-secondary: #059669;
   --color-secondary-foreground: #FFFFFF;
-  --color-muted: #E5E2D9;
+  --color-muted: #F1F5F9;
   --color-muted-foreground: #475569;
   --color-accent: #2563EB;
   --color-accent-foreground: #FFFFFF;
-  --color-border: #0B0F19;
-  --color-input: #E5E2D9;
+  --color-border: #E2E8F0;
+  --color-input: #E2E8F0;
   --color-ring: #2563EB;
 
-  --font-display: "Plus Jakarta Sans", "Archivo Black", sans-serif;
+  --font-display: "Plus Jakarta Sans", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
   --font-sans: "Inter", sans-serif;
 }
 
 :root {
-  --background: #F4F2EC;
-  --foreground: #0B0F19;
+  --background: #F8FAFC;
+  --foreground: #0F172A;
 }
 
 @layer base {
   * {
-    border-color: #0B0F19;
+    border-color: #E2E8F0;
   }
 
   body {
-    background-color: #F4F2EC;
-    background-image: radial-gradient(#CBD5E1 1px, transparent 1px);
-    background-size: 24px 24px;
-    color: #0B0F19;
+    background-color: #F8FAFC;
+    color: #0F172A;
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
@@ -61,121 +59,121 @@
   h1, h2, h3, h4 {
     font-family: var(--font-display);
     letter-spacing: -0.03em;
-    color: #0B0F19;
+    color: #0F172A;
   }
 }
 
-/* ---------- Ultra-Cool Neo-Bento & Cyber Light Utilities ---------- */
+/* ---------- Ultimate Light Glass & SaaS Card Utilities ---------- */
 
-@utility card-cyber {
-  background-color: #FFFFFF;
-  color: #0B0F19;
-  border: 2px solid #0B0F19;
-  border-radius: 1rem !important;
-  box-shadow: 5px 5px 0px 0px #0B0F19;
-  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1);
+@utility glass-light-panel {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border-radius: 1.5rem !important;
 }
 
-@utility card-cyber {
+@utility glass-light-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 1.25rem !important;
+  box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.04), 0 2px 4px -1px rgba(15, 23, 42, 0.02);
+  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 250ms cubic-bezier(0.16, 1, 0.3, 1), border-color 250ms ease;
+}
+
+@utility glass-light-card {
   &:hover {
-    transform: translate(-3px, -3px);
-    box-shadow: 8px 8px 0px 0px #0B0F19;
+    transform: translateY(-4px);
+    border-color: rgba(37, 99, 235, 0.4);
+    box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.12), 0 10px 15px -3px rgba(15, 23, 42, 0.05);
   }
 }
 
-@utility card-dark-cyber {
-  background-color: #0B0F19;
-  color: #F8FAFC;
-  border: 2px solid #0B0F19;
-  border-radius: 1rem !important;
-  box-shadow: 5px 5px 0px 0px #2563EB;
-  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1);
+@utility glass-light-header {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 4px 20px -5px rgba(15, 23, 42, 0.05);
 }
 
-@utility card-dark-cyber {
-  &:hover {
-    transform: translate(-3px, -3px);
-    box-shadow: 8px 8px 0px 0px #2563EB;
-  }
-}
-
-@utility btn-cyber-primary {
+@utility btn-saas-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  background-color: #2563EB;
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
   color: #FFFFFF;
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: 0.9rem;
-  font-weight: 800;
-  padding: 0.85rem 1.75rem;
-  border: 2px solid #0B0F19;
-  border-radius: 0.75rem !important;
-  box-shadow: 4px 4px 0px 0px #0B0F19;
+  font-weight: 700;
+  padding: 0.85rem 1.85rem;
+  border-radius: 9999px !important;
+  box-shadow: 0 8px 20px -4px rgba(37, 99, 235, 0.35);
   cursor: pointer;
-  transition: transform 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@utility btn-cyber-primary {
+@utility btn-saas-primary {
   &:hover {
-    background-color: #1D4ED8;
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0px 0px #0B0F19;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 14px 28px -4px rgba(37, 99, 235, 0.45);
   }
   &:active {
-    transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0px 0px #0B0F19;
+    transform: translateY(1px) scale(0.98);
   }
 }
 
-@utility btn-cyber-secondary {
+@utility btn-saas-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  background-color: #FFFFFF;
-  color: #0B0F19;
-  font-family: var(--font-display);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  color: #0F172A;
+  font-family: var(--font-sans);
   font-size: 0.9rem;
-  font-weight: 800;
-  padding: 0.85rem 1.75rem;
-  border: 2px solid #0B0F19;
-  border-radius: 0.75rem !important;
-  box-shadow: 4px 4px 0px 0px #0B0F19;
+  font-weight: 700;
+  padding: 0.85rem 1.85rem;
+  border: 1px solid #CBD5E1;
+  border-radius: 9999px !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
   cursor: pointer;
-  transition: transform 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+  transition: transform 200ms ease, box-shadow 200ms ease, background-color 200ms ease;
 }
 
-@utility btn-cyber-secondary {
+@utility btn-saas-secondary {
   &:hover {
-    background-color: #F8FAFC;
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0px 0px #0B0F19;
+    background: #F1F5F9;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.08);
   }
   &:active {
-    transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0px 0px #0B0F19;
+    transform: translateY(1px);
   }
 }
 
-@utility badge-cyber {
+@utility badge-saas {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  background-color: #0B0F19;
-  color: #F8FAFC;
-  border: 1.5px solid #0B0F19;
-  padding: 0.3rem 0.8rem;
-  border-radius: 0.5rem !important;
+  background: #F1F5F9;
+  color: #1E293B;
+  border: 1px solid #E2E8F0;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px !important;
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  font-weight: 800;
-  box-shadow: 2px 2px 0px 0px #2563EB;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .card-cyber, .card-dark-cyber, .btn-cyber-primary, .btn-cyber-secondary {
+  .glass-light-card, .btn-saas-primary, .btn-saas-secondary {
     transition: none !important;
     transform: none !important;
   }

@@ -89,17 +89,17 @@ export function CaseStudy() {
     <section
       id="case-study"
       aria-label="CivicPulse case study"
-      className="card-cyber scroll-mt-24 p-6 md:p-10"
+      className="glass-light-panel scroll-mt-24 p-6 md:p-10"
     >
-      <div className="flex flex-wrap items-end justify-between gap-4 border-b-2 border-[#0B0F19] pb-6">
+      <div className="flex flex-wrap items-end justify-between gap-4 border-b border-slate-200 pb-6">
         <div>
-          <div className="badge-cyber text-blue-400">
+          <div className="badge-saas text-blue-700">
             <span>📚</span> REAL-WORLD CASE STUDY
           </div>
-          <h2 className="mt-2 font-display text-2xl font-black tracking-tight text-[#0B0F19] md:text-3xl">
+          <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
             5-STAGE HAZARD TRIAGE PIPELINE
           </h2>
-          <p className="mt-1.5 max-w-2xl text-xs text-slate-700 font-medium">
+          <p className="mt-1.5 max-w-2xl text-xs text-slate-600 font-medium">
             City call centres drown in unstructured complaints. CivicPulse chains 5 Azure AI services into a single unified dispatch pipeline.
           </p>
         </div>
@@ -110,9 +110,9 @@ export function CaseStudy() {
             { k: "5", v: "Azure AI services" },
             { k: "1", v: "dispatch plan" },
           ].map((s) => (
-            <div key={s.v} className="rounded-xl border-2 border-[#0B0F19] bg-[#F4F2EC] p-3 text-center shadow-[3px_3px_0px_#0B0F19]">
-              <div className="font-display text-2xl font-black text-blue-600 md:text-3xl">{s.k}</div>
-              <div className="text-[10px] font-black uppercase text-slate-800">{s.v}</div>
+            <div key={s.v} className="glass-light-card p-3 text-center">
+              <div className="font-display text-2xl font-extrabold text-blue-600 md:text-3xl">{s.k}</div>
+              <div className="text-[10px] font-bold uppercase text-slate-500">{s.v}</div>
             </div>
           ))}
         </div>
@@ -130,10 +130,10 @@ export function CaseStudy() {
               aria-controls={`stage-panel-${s.id}`}
               tabIndex={i === active ? 0 : -1}
               onClick={() => setActive(i)}
-              className={`px-4 py-2.5 text-xs font-black rounded-xl transition-all border-2 border-[#0B0F19] ${
+              className={`px-4 py-2.5 text-xs font-bold rounded-2xl transition-all ${
                 i === active
-                  ? "bg-blue-600 text-white shadow-[3px_3px_0px_#0B0F19]"
-                  : "bg-white text-[#0B0F19] hover:bg-slate-100 shadow-[2px_2px_0px_#0B0F19]"
+                  ? "bg-blue-600 text-white shadow-md shadow-blue-500/25 scale-105"
+                  : "bg-white text-slate-700 border border-slate-200 hover:bg-slate-50"
               }`}
             >
               <span>0{i + 1}. {s.service}</span>
@@ -151,19 +151,19 @@ export function CaseStudy() {
         role="tabpanel"
         id={`stage-panel-${stage.id}`}
         aria-labelledby={`stage-tab-${stage.id}`}
-        className="card-cyber relative overflow-hidden mt-6 grid grid-cols-1 gap-6 p-6 lg:grid-cols-12"
+        className="glass-light-card relative overflow-hidden mt-6 grid grid-cols-1 gap-6 p-6 lg:grid-cols-12"
       >
-        <div className={`absolute top-0 left-0 right-0 h-2 ${stage.color}`} />
+        <div className={`absolute top-0 left-0 right-0 h-1.5 ${stage.color}`} />
         <div className="lg:col-span-7">
-          <p className="text-xs font-black uppercase tracking-wider text-blue-600 font-mono">
+          <p className="text-xs font-bold uppercase tracking-wider text-blue-600 font-mono">
             STAGE 0{active + 1} · {stage.azure}
           </p>
-          <h3 className="mt-2 font-display text-xl font-black text-[#0B0F19] md:text-2xl">{stage.title}</h3>
-          <p className="mt-3 text-xs leading-relaxed text-slate-800 font-medium">
+          <h3 className="mt-2 font-display text-xl font-bold text-slate-900 md:text-2xl">{stage.title}</h3>
+          <p className="mt-3 text-xs leading-relaxed text-slate-600 font-medium">
             {stage.body}
           </p>
           <Link
-            className="btn-cyber-primary mt-6 inline-flex"
+            className="btn-saas-primary mt-6 inline-flex"
             to="/demo/$serviceId"
             params={{ serviceId: stage.serviceId }}
           >
@@ -172,13 +172,13 @@ export function CaseStudy() {
           </Link>
         </div>
         <div className="grid gap-3 lg:col-span-5 font-mono">
-          <div className="rounded-lg border-2 border-[#0B0F19] bg-[#F4F2EC] p-4 shadow-[3px_3px_0px_#0B0F19]">
-            <p className="text-[10px] font-black text-slate-700 uppercase">STAGE INPUT</p>
-            <p className="mt-1 text-xs text-[#0B0F19] leading-relaxed font-bold bg-white p-2.5 rounded-md border border-slate-300">{stage.io.in}</p>
+          <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+            <p className="text-[10px] font-bold text-slate-500 uppercase">STAGE INPUT</p>
+            <p className="mt-1 text-xs text-slate-900 leading-relaxed font-medium bg-white p-2.5 rounded-lg border border-slate-200">{stage.io.in}</p>
           </div>
-          <div className="rounded-lg border-2 border-[#0B0F19] bg-[#F4F2EC] p-4 shadow-[3px_3px_0px_#0B0F19]">
-            <p className="text-[10px] font-black text-slate-700 uppercase">STAGE OUTPUT</p>
-            <p className="mt-1 text-xs text-[#0B0F19] leading-relaxed font-bold bg-white p-2.5 rounded-md border border-slate-300">{stage.io.out}</p>
+          <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+            <p className="text-[10px] font-bold text-slate-500 uppercase">STAGE OUTPUT</p>
+            <p className="mt-1 text-xs text-slate-900 leading-relaxed font-medium bg-white p-2.5 rounded-lg border border-slate-200">{stage.io.out}</p>
           </div>
         </div>
       </motion.div>

@@ -64,13 +64,13 @@ function NeuralRingScene({ activeIndex }: { activeIndex: number }) {
       <mesh ref={ringRef} rotation={[0, 0, Math.PI / 2]}>
         <cylinderGeometry args={[0.22, 0.22, 8.2, 32]} />
         <meshStandardMaterial
-          color="#0B0F19"
-          roughness={0.1}
-          metalness={0.9}
+          color="#334155"
+          roughness={0.2}
+          metalness={0.8}
         />
       </mesh>
 
-      {/* Pulsing Energy Core */}
+      {/* Internal Core Wireframe */}
       <mesh rotation={[0, 0, Math.PI / 2]}>
         <cylinderGeometry args={[0.1, 0.1, 8.1, 16]} />
         <meshBasicMaterial color="#2563EB" wireframe />
@@ -84,7 +84,7 @@ function NeuralRingScene({ activeIndex }: { activeIndex: number }) {
             {/* Collar Ring */}
             <mesh rotation={[0, 0, Math.PI / 2]}>
               <cylinderGeometry args={[0.38, 0.38, 0.28, 24]} />
-              <meshStandardMaterial color="#0B0F19" roughness={0.1} metalness={0.9} />
+              <meshStandardMaterial color="#0F172A" roughness={0.1} metalness={0.9} />
             </mesh>
 
             {/* Glowing Sphere */}
@@ -102,7 +102,7 @@ function NeuralRingScene({ activeIndex }: { activeIndex: number }) {
             <Text
               position={[0, 0.75, 0]}
               fontSize={0.28}
-              color={isActive ? "#2563EB" : "#0B0F19"}
+              color={isActive ? "#2563EB" : "#0F172A"}
               anchorX="center"
               anchorY="middle"
               font="https://fonts.gstatic.com/s/jetbrainsmono/v13/tB3g524-GGq3n53yAoTsdbI.woff"
@@ -146,16 +146,16 @@ export function DispatchPipe3D({
   }, []);
 
   return (
-    <div className="card-cyber relative h-[360px] w-full overflow-hidden bg-[#E5E2D9]">
-      {/* Top Header Bar */}
-      <div className="flex flex-wrap items-center justify-between border-b-2 border-[#0B0F19] bg-[#0B0F19] px-5 py-3 text-xs font-mono text-white">
+    <div className="glass-light-panel relative h-[360px] w-full overflow-hidden p-1">
+      {/* Header Bar */}
+      <div className="flex flex-wrap items-center justify-between border-b border-slate-200 bg-white/80 px-5 py-3 text-xs font-mono backdrop-blur-md">
         <div className="flex items-center gap-2.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-blue-500 animate-pulse" />
-          <span className="font-extrabold text-white tracking-wide">
-            3D AZURE AI CONDUIT
+          <span className="h-2.5 w-2.5 rounded-full bg-blue-600 animate-pulse" />
+          <span className="font-extrabold text-slate-900 tracking-wide">
+            3D NEURAL DISPATCH CONDUIT
           </span>
         </div>
-        <span className="text-slate-300 font-medium">
+        <span className="text-slate-500 font-medium">
           Drag to rotate 3D pipeline · Click stage node below
         </span>
       </div>
@@ -166,7 +166,7 @@ export function DispatchPipe3D({
           <p className="font-display text-lg font-bold text-blue-600">
             AZURE AI PIPELINE CONDUIT
           </p>
-          <p className="mt-2 font-mono text-xs text-slate-800">
+          <p className="mt-2 font-mono text-xs text-slate-600">
             [5-Stage Highway: Speech → Vision → Language → RAG → OpenAI]
           </p>
         </div>
@@ -181,7 +181,7 @@ export function DispatchPipe3D({
       )}
 
       {/* Stage Selector Pill Row */}
-      <div className="absolute bottom-3 left-3 right-3 flex flex-wrap justify-center gap-2 bg-[#0B0F19] p-2.5 rounded-xl border-2 border-[#0B0F19] shadow-md">
+      <div className="absolute bottom-3 left-3 right-3 flex flex-wrap justify-center gap-2 bg-white/90 p-2.5 backdrop-blur-md rounded-2xl border border-slate-200 shadow-sm">
         {STAGE_NODES.map((node, idx) => {
           const isActive = idx === activeStageIndex;
           return (
@@ -189,10 +189,10 @@ export function DispatchPipe3D({
               key={node.name}
               type="button"
               onClick={() => onSelectStage?.(idx)}
-              className={`px-3.5 py-1.5 text-[11px] font-mono font-extrabold rounded-lg transition-all ${
+              className={`px-3 py-1.5 text-[11px] font-mono font-bold rounded-xl transition-all ${
                 isActive
-                  ? "bg-blue-600 text-white shadow-sm scale-105"
-                  : "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                  ? "bg-blue-600 text-white shadow-md shadow-blue-500/25 scale-105"
+                  : "bg-slate-100 text-slate-700 hover:bg-slate-200"
               }`}
             >
               0{idx + 1}. {node.name}

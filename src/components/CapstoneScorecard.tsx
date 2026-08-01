@@ -63,22 +63,22 @@ export function CapstoneScorecard() {
     <section
       id="scorecard"
       aria-label="Season of AI 2.0 Capstone Scorecard"
-      className="card-cyber scroll-mt-24 p-6 md:p-10"
+      className="glass-light-panel scroll-mt-24 p-6 md:p-10"
     >
-      <div className="flex flex-wrap items-end justify-between gap-4 border-b-2 border-[#0B0F19] pb-6">
+      <div className="flex flex-wrap items-end justify-between gap-4 border-b border-slate-200 pb-6">
         <div>
-          <div className="badge-cyber text-blue-400">
+          <div className="badge-saas text-blue-700">
             <span>🏆</span> SUBMISSION REQUIREMENTS
           </div>
-          <h2 className="mt-2 font-display text-2xl font-black tracking-tight text-[#0B0F19] md:text-3xl">
+          <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
             CAPSTONE SCORECARD
           </h2>
-          <p className="mt-1.5 max-w-2xl text-xs text-slate-700 font-medium">
+          <p className="mt-1.5 max-w-2xl text-xs text-slate-600 font-medium">
             How CivicPulse satisfies and exceeds all official Season of AI 2.0 Final Capstone requirements.
           </p>
         </div>
 
-        <div className="flex items-center gap-2 rounded-lg border-2 border-[#0B0F19] bg-emerald-400 px-4 py-2 text-xs font-black text-black shadow-[3px_3px_0px_#0B0F19]">
+        <div className="flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 text-xs font-bold text-emerald-700 shadow-sm">
           <span>STATUS:</span> 100% VERIFIED & COMPLIANT
         </div>
       </div>
@@ -92,39 +92,39 @@ export function CapstoneScorecard() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.4, delay: idx * 0.1 }}
-            className={`card-cyber relative overflow-hidden flex flex-col justify-between p-6 ${
+            className={`glass-light-card relative overflow-hidden flex flex-col justify-between p-6 ${
               c.isLarge ? "md:col-span-3" : "md:col-span-2"
             }`}
           >
             {/* Top Color Stripe */}
-            <div className={`absolute top-0 left-0 right-0 h-2 ${c.stripe}`} />
+            <div className={`absolute top-0 left-0 right-0 h-1.5 ${c.stripe}`} />
 
             <div>
               <div className="flex items-center justify-between text-xs font-mono">
-                <span className="font-extrabold text-slate-500">REQ 0{idx + 1}</span>
-                <span className="rounded-md bg-[#F4F2EC] border border-[#0B0F19] px-2.5 py-0.5 text-[10px] font-black text-[#0B0F19]">
+                <span className="font-bold text-slate-400">REQ 0{idx + 1}</span>
+                <span className="rounded-full bg-slate-100 border border-slate-200 px-2.5 py-0.5 text-[10px] font-extrabold text-slate-700">
                   {c.badge}
                 </span>
               </div>
 
-              <h3 className="mt-4 font-display text-lg font-black text-[#0B0F19] md:text-xl">
+              <h3 className="mt-4 font-display text-lg font-bold text-slate-900 md:text-xl">
                 {c.req}
               </h3>
-              <p className="mt-2.5 text-xs text-slate-800 leading-relaxed font-medium">
+              <p className="mt-2.5 text-xs text-slate-600 leading-relaxed font-medium">
                 {c.desc}
               </p>
             </div>
 
-            <div className="mt-6 flex items-baseline justify-between border-t-2 border-[#0B0F19] pt-4">
+            <div className="mt-6 flex items-baseline justify-between border-t border-slate-200 pt-4">
               <div>
-                <span className={`font-display text-3xl font-black md:text-4xl ${c.statColor}`}>
+                <span className={`font-display text-3xl font-extrabold md:text-4xl ${c.statColor}`}>
                   {c.stat}
                 </span>
-                <p className="text-[10px] font-black text-slate-700 uppercase tracking-wide">
+                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wide">
                   {c.statLabel}
                 </p>
               </div>
-              <span className="text-xs font-black text-black bg-emerald-400 px-2.5 py-1 rounded-md border border-[#0B0F19] shadow-[2px_2px_0px_#0B0F19]">
+              <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
                 VERIFIED ✓
               </span>
             </div>

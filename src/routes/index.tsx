@@ -13,11 +13,11 @@ const DispatchPipe3D = lazy(() => import("@/components/DispatchPipe3D"));
 
 function DispatchPipeFallback() {
   return (
-    <div className="card-cyber relative flex h-[360px] w-full flex-col items-center justify-center p-6 text-center font-mono bg-[#E5E2D9]">
+    <div className="glass-light-panel relative flex h-[360px] w-full flex-col items-center justify-center p-6 text-center font-mono bg-[#F8FAFC]">
       <p className="font-display text-xl font-bold text-blue-600">
         AZURE AI NEURAL RING 3D
       </p>
-      <p className="mt-2 text-xs font-bold text-slate-800">
+      <p className="mt-2 text-xs font-bold text-slate-500">
         [INITIALIZING 3D PIPELINE CONDUIT...]
       </p>
     </div>
@@ -66,27 +66,27 @@ export function Index() {
   const [activeStage, setActiveStage] = useState(0);
 
   return (
-    <main className="relative min-h-screen bg-[#F4F2EC] text-[#0B0F19] selection:bg-blue-600 selection:text-white">
-      {/* Deep Void Ink Sticky Top Header */}
-      <header className="sticky top-0 z-40 border-b-2 border-[#0B0F19] bg-[#0B0F19] px-4 py-3.5 text-white shadow-lg md:px-8">
+    <main className="relative min-h-screen bg-[#F8FAFC] text-[#0F172A] selection:bg-blue-600 selection:text-white">
+      {/* Floating Translucent SaaS Header */}
+      <header className="glass-light-header sticky top-0 z-40 px-4 py-3.5 md:px-8">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4">
           <div className="flex flex-wrap items-center gap-3">
-            <h1 className="font-display text-2xl font-black tracking-tight text-white md:text-3xl">
-              Civic<span className="text-blue-500">Pulse</span>
+            <h1 className="font-display text-2xl font-black tracking-tight text-slate-900 md:text-3xl">
+              Civic<span className="text-blue-600">Pulse</span>
             </h1>
-            <span className="rounded-lg bg-blue-600 border-2 border-blue-400 px-3 py-0.5 text-xs font-extrabold text-white font-mono shadow-[2px_2px_0px_#000]">
+            <span className="rounded-full bg-blue-50 border border-blue-200 px-3 py-0.5 text-xs font-extrabold text-blue-700 font-mono">
               AZURE AI CAPSTONE v2.0
             </span>
-            <span className="hidden text-xs text-slate-300 font-medium md:inline">
+            <span className="hidden text-xs text-slate-500 font-medium md:inline">
               Season of AI 2.0 · Final Showcase
             </span>
           </div>
 
           <div className="flex flex-wrap items-center gap-2.5">
-            <span className="badge-cyber text-emerald-400 border-emerald-400">
-              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping" /> SYSTEM ONLINE
+            <span className="badge-saas text-emerald-700 bg-emerald-50 border-emerald-200">
+              <span className="h-2 w-2 rounded-full bg-emerald-600 animate-ping" /> SYSTEM ONLINE
             </span>
-            <span className="badge-cyber text-cyan-300 border-cyan-400">05 AZURE SERVICES</span>
+            <span className="badge-saas text-blue-700 bg-blue-50 border-blue-200">05 AZURE SERVICES</span>
           </div>
         </div>
       </header>
@@ -106,9 +106,9 @@ export function Index() {
                 <motion.div
                   initial={{ opacity: 0, x: -15 }}
                   animate={{ opacity: 1, x: 0 }}
-                  className="badge-cyber text-blue-400"
+                  className="badge-saas text-blue-700 font-mono font-bold"
                 >
-                  <span className="h-2 w-2 rounded-full bg-blue-500 animate-pulse" />
+                  <span className="h-2 w-2 rounded-full bg-blue-600 animate-pulse" />
                   MUNICIPAL EMERGENCY TRIAGE OPERATOR
                 </motion.div>
 
@@ -116,7 +116,7 @@ export function Index() {
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
-                  className="mt-4 font-display text-4xl font-black leading-tight text-[#0B0F19] sm:text-5xl md:text-6xl"
+                  className="mt-4 font-display text-4xl font-black leading-tight text-slate-900 sm:text-5xl md:text-6xl"
                 >
                   A city hears every hazard.
                   <br />
@@ -127,7 +127,7 @@ export function Index() {
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
-                  className="mt-5 max-w-xl text-base leading-relaxed text-slate-800 font-medium"
+                  className="mt-5 max-w-xl text-base leading-relaxed text-slate-600 font-normal"
                 >
                   Residents report broken pipes, live wires, and flooded underpasses via voice notes & photos.
                   CivicPulse transcribes, analyzes evidence, scores urgency, cites municipal bylaws, and drafts work orders — 5 Azure AI microservices acting as one operator.
@@ -140,12 +140,12 @@ export function Index() {
                 transition={{ delay: 0.3 }}
                 className="mt-8 flex flex-wrap items-center gap-4"
               >
-                <a className="btn-cyber-primary text-base" href="#simulator">
+                <a className="btn-saas-primary text-base" href="#simulator">
                   LAUNCH DISPATCH SIMULATOR
                   <span>↓</span>
                 </a>
 
-                <a className="btn-cyber-secondary text-base" href="#services">
+                <a className="btn-saas-secondary text-base" href="#services">
                   EXPLORE 5 MODULES
                   <span>→</span>
                 </a>
@@ -168,17 +168,17 @@ export function Index() {
         </section>
 
         {/* ---- 3. PIPELINE DETAIL BENTO STRIP ---- */}
-        <section aria-label="Pipeline Detail Strip" className="mt-12 rounded-2xl bg-[#0B0F19] p-6 text-white border-2 border-[#0B0F19] shadow-[6px_6px_0px_0px_#2563EB]">
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-slate-800 pb-4">
+        <section aria-label="Pipeline Detail Strip" className="mt-12 glass-light-panel p-6">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-4">
             <div>
-              <div className="badge-cyber text-blue-400 border-blue-500">
+              <div className="badge-saas text-blue-700">
                 <span>⚡</span> MICROSERVICE PIPELINE STRIP
               </div>
-              <h3 className="mt-2 font-display text-xl font-bold text-white md:text-2xl">
+              <h3 className="mt-2 font-display text-xl font-bold text-slate-900 md:text-2xl">
                 5-STAGE AZURE AI DATA HIGHWAY
               </h3>
             </div>
-            <span className="text-xs text-slate-300 font-mono">
+            <span className="text-xs text-slate-500 font-mono">
               Click a card to activate stage on 3D conduit
             </span>
           </div>
@@ -197,10 +197,8 @@ export function Index() {
                   key={st.name}
                   type="button"
                   onClick={() => setActiveStage(st.idx)}
-                  className={`relative overflow-hidden rounded-xl p-4 text-left cursor-pointer transition-all border-2 ${
-                    isActive
-                      ? "bg-slate-800 border-blue-500 scale-[1.03] shadow-[4px_4px_0px_#2563EB]"
-                      : "bg-slate-900 border-slate-700 hover:bg-slate-800"
+                  className={`glass-light-card relative overflow-hidden flex flex-col justify-between p-4 text-left cursor-pointer transition-all ${
+                    isActive ? "ring-2 ring-blue-600 scale-[1.03] shadow-md shadow-blue-500/20" : ""
                   }`}
                 >
                   <div className={`absolute top-0 left-0 right-0 h-1.5 ${st.color}`} />
@@ -209,11 +207,11 @@ export function Index() {
                       <span>STAGE 0{st.idx + 1}</span>
                       {isActive && <span className="bg-blue-600 text-white px-2 py-0.5 rounded-full font-bold">ACTIVE</span>}
                     </div>
-                    <h4 className="mt-2 font-display text-base font-bold text-white">{st.name}</h4>
-                    <p className="text-[11px] font-medium text-slate-300">{st.azure}</p>
+                    <h4 className="mt-2 font-display text-base font-bold text-slate-900">{st.name}</h4>
+                    <p className="text-[11px] font-medium text-slate-500">{st.azure}</p>
                   </div>
 
-                  <div className="mt-4 border-t border-slate-700 pt-2 text-[10px] text-slate-300 leading-tight">
+                  <div className="mt-4 border-t border-slate-200 pt-2 text-[10px] text-slate-600 leading-tight">
                     {st.desc}
                   </div>
                 </button>
@@ -239,16 +237,16 @@ export function Index() {
 
         {/* ---- 7. LIVE MODULES RACK ---- */}
         <section id="services" className="mt-12 scroll-mt-24">
-          <div className="flex flex-wrap items-end justify-between gap-4 border-b-2 border-[#0B0F19] pb-4">
+          <div className="flex flex-wrap items-end justify-between gap-4 border-b border-slate-200 pb-4">
             <div>
-              <div className="badge-cyber text-blue-400">
+              <div className="badge-saas text-blue-700">
                 <span>📦</span> DEPLOYED MICROSERVICES
               </div>
-              <h2 className="mt-2 font-display text-2xl font-bold text-[#0B0F19] md:text-3xl">
+              <h2 className="mt-2 font-display text-2xl font-bold text-slate-900 md:text-3xl">
                 LIVE AZURE AI MODULES
               </h2>
             </div>
-            <span className="text-xs text-slate-700 font-mono font-bold">
+            <span className="text-xs text-slate-500 font-mono">
               {services.length} deployments · interactive card controls
             </span>
           </div>
@@ -265,15 +263,15 @@ export function Index() {
       </div>
 
       {/* ---- 9. FOOTER ---- */}
-      <footer className="border-t-2 border-[#0B0F19] bg-[#0B0F19] py-6 text-center text-xs text-slate-300 font-mono">
+      <footer className="border-t border-slate-200 bg-white py-6 text-center text-xs text-slate-500 font-mono">
         <div className="mx-auto max-w-7xl px-4 flex flex-wrap items-center justify-between gap-4">
-          <p className="font-bold">
+          <p className="font-medium">
             CivicPulse © 2026 · Season of AI 2.0 Final Capstone Project
           </p>
           <div className="flex items-center gap-3">
-            <span className="badge-cyber text-blue-400">AZURE OPENAI</span>
-            <span className="badge-cyber text-emerald-400">AI SEARCH</span>
-            <span className="badge-cyber text-blue-400">AZURE SPEECH</span>
+            <span className="badge-saas text-blue-700">AZURE OPENAI</span>
+            <span className="badge-saas text-emerald-700">AI SEARCH</span>
+            <span className="badge-saas text-blue-700">AZURE SPEECH</span>
           </div>
         </div>
       </footer>
