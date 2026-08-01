@@ -6,8 +6,8 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * CivicPulse — Dispatch Console Neobrutalist Design System
- * Void #0B0C0E canvas, Paper #F3F0E9 cards, Siren #FF3B1F alerts, Signal #C9F031 accents, Wire #2B6EFF data stream.
+ * CivicPulse — Light Dispatch Console Neobrutalist Design System
+ * Canvas #F8F6F0 (Chalk Paper), Cards #FFFFFF, Ink #111318, Siren #FF3B1F, Signal #D4FF00, Azure #1D63FF
  */
 
 @theme inline {
@@ -18,28 +18,29 @@
   --radius-2xl: 0px;
   --radius-3xl: 0px;
   
-  --color-void: #0B0C0E;
-  --color-paper: #F3F0E9;
+  --color-canvas: #F8F6F0;
+  --color-paper: #FFFFFF;
+  --color-ink: #111318;
   --color-siren: #FF3B1F;
-  --color-signal: #C9F031;
-  --color-wire: #2B6EFF;
+  --color-signal: #D4FF00;
+  --color-wire: #1D63FF;
   
-  --color-background: #0B0C0E;
-  --color-foreground: #F3F0E9;
-  --color-card: #F3F0E9;
-  --color-card-foreground: #0B0C0E;
-  --color-popover: #F3F0E9;
-  --color-popover-foreground: #0B0C0E;
+  --color-background: #F8F6F0;
+  --color-foreground: #111318;
+  --color-card: #FFFFFF;
+  --color-card-foreground: #111318;
+  --color-popover: #FFFFFF;
+  --color-popover-foreground: #111318;
   --color-primary: #FF3B1F;
-  --color-primary-foreground: #0B0C0E;
-  --color-secondary: #C9F031;
-  --color-secondary-foreground: #0B0C0E;
-  --color-muted: #1A1C23;
-  --color-muted-foreground: #94A3B8;
-  --color-accent: #C9F031;
-  --color-accent-foreground: #0B0C0E;
-  --color-border: #0B0C0E;
-  --color-input: #0B0C0E;
+  --color-primary-foreground: #FFFFFF;
+  --color-secondary: #D4FF00;
+  --color-secondary-foreground: #111318;
+  --color-muted: #EBE8DE;
+  --color-muted-foreground: #555E6D;
+  --color-accent: #D4FF00;
+  --color-accent-foreground: #111318;
+  --color-border: #111318;
+  --color-input: #111318;
   --color-ring: #FF3B1F;
 
   --font-display: "Archivo Black", "Space Grotesk", sans-serif;
@@ -49,24 +50,25 @@
 
 :root {
   --radius: 0px;
-  --background: #0B0C0E;
-  --foreground: #F3F0E9;
-  --paper: #F3F0E9;
-  --void: #0B0C0E;
+  --background: #F8F6F0;
+  --foreground: #111318;
+  --paper: #FFFFFF;
+  --canvas: #F8F6F0;
+  --ink: #111318;
   --siren: #FF3B1F;
-  --signal: #C9F031;
-  --wire: #2B6EFF;
+  --signal: #D4FF00;
+  --wire: #1D63FF;
 }
 
 @layer base {
   * {
-    border-color: #0B0C0E;
+    border-color: #111318;
     border-radius: 0px !important;
   }
 
   body {
-    background-color: #0B0C0E;
-    color: #F3F0E9;
+    background-color: #F8F6F0;
+    color: #111318;
     font-family: var(--font-mono);
     -webkit-font-smoothing: antialiased;
   }
@@ -75,6 +77,7 @@
     font-family: var(--font-display);
     text-transform: uppercase;
     letter-spacing: -0.03em;
+    color: #111318;
   }
 
   input, select, textarea, button {
@@ -83,45 +86,37 @@
   }
 
   :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
-    outline: 3px solid #C9F031 !important;
-    outline-offset: 2px !important;
+    outline: 3px solid #FF3B1F !important;
+    outline-offset: 3px !important;
   }
 }
 
-/* ---------- Neobrutalist Console Utilities ---------- */
+/* ---------- Light Neobrutalist Console Utilities ---------- */
 
 @utility shadow-hard {
-  box-shadow: 6px 6px 0px #000000;
+  box-shadow: 6px 6px 0px #111318;
 }
 
 @utility shadow-hard-lg {
-  box-shadow: 8px 8px 0px #000000;
+  box-shadow: 8px 8px 0px #111318;
 }
 
 @utility shadow-hard-sm {
-  box-shadow: 4px 4px 0px #000000;
-}
-
-@utility shadow-hard-siren {
-  box-shadow: 6px 6px 0px #FF3B1F;
-}
-
-@utility shadow-hard-signal {
-  box-shadow: 6px 6px 0px #C9F031;
+  box-shadow: 4px 4px 0px #111318;
 }
 
 @utility card-paper {
-  background-color: #F3F0E9;
-  color: #0B0C0E;
-  border: 3px solid #000000;
-  box-shadow: 6px 6px 0px #000000;
+  background-color: #FFFFFF;
+  color: #111318;
+  border: 3px solid #111318;
+  box-shadow: 6px 6px 0px #111318;
   transition: transform 140ms ease, box-shadow 140ms ease;
 }
 
 @utility card-paper {
   &:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 8px 8px 0px #000000;
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0px #111318;
   }
 }
 
@@ -129,30 +124,30 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   background-color: #FF3B1F;
-  color: #000000;
+  color: #FFFFFF;
   font-family: var(--font-mono);
   font-size: 0.85rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  padding: 0.75rem 1.5rem;
-  border: 3px solid #000000;
-  box-shadow: 6px 6px 0px #000000;
+  padding: 0.85rem 1.75rem;
+  border: 3px solid #111318;
+  box-shadow: 6px 6px 0px #111318;
   cursor: pointer;
   transition: transform 100ms ease, box-shadow 100ms ease, background-color 100ms ease;
 }
 
 @utility btn-dispatch {
   &:hover {
-    background-color: #ff553c;
-    transform: translate(-2px, -2px);
-    box-shadow: 8px 8px 0px #000000;
+    background-color: #e02d13;
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0px #111318;
   }
   &:active {
     transform: translate(6px, 6px);
-    box-shadow: 0px 0px 0px #000000;
+    box-shadow: 0px 0px 0px #111318;
   }
 }
 
@@ -160,30 +155,30 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  background-color: #C9F031;
-  color: #000000;
+  gap: 0.6rem;
+  background-color: #D4FF00;
+  color: #111318;
   font-family: var(--font-mono);
   font-size: 0.85rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  padding: 0.75rem 1.5rem;
-  border: 3px solid #000000;
-  box-shadow: 6px 6px 0px #000000;
+  padding: 0.85rem 1.75rem;
+  border: 3px solid #111318;
+  box-shadow: 6px 6px 0px #111318;
   cursor: pointer;
   transition: transform 100ms ease, box-shadow 100ms ease, background-color 100ms ease;
 }
 
 @utility btn-signal {
   &:hover {
-    background-color: #d6f552;
-    transform: translate(-2px, -2px);
-    box-shadow: 8px 8px 0px #000000;
+    background-color: #c2eb00;
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0px #111318;
   }
   &:active {
     transform: translate(6px, 6px);
-    box-shadow: 0px 0px 0px #000000;
+    box-shadow: 0px 0px 0px #111318;
   }
 }
 
@@ -191,30 +186,30 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  background-color: #F3F0E9;
-  color: #000000;
+  gap: 0.6rem;
+  background-color: #FFFFFF;
+  color: #111318;
   font-family: var(--font-mono);
   font-size: 0.85rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  padding: 0.75rem 1.5rem;
-  border: 3px solid #000000;
-  box-shadow: 6px 6px 0px #000000;
+  padding: 0.85rem 1.75rem;
+  border: 3px solid #111318;
+  box-shadow: 6px 6px 0px #111318;
   cursor: pointer;
   transition: transform 100ms ease, box-shadow 100ms ease, background-color 100ms ease;
 }
 
 @utility btn-paper {
   &:hover {
-    background-color: #ffffff;
-    transform: translate(-2px, -2px);
-    box-shadow: 8px 8px 0px #000000;
+    background-color: #F8F6F0;
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0px #111318;
   }
   &:active {
     transform: translate(6px, 6px);
-    box-shadow: 0px 0px 0px #000000;
+    box-shadow: 0px 0px 0px #111318;
   }
 }
 
@@ -222,24 +217,24 @@
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  background-color: #0B0C0E;
-  color: #C9F031;
-  border: 2px solid #C9F031;
-  padding: 0.25rem 0.65rem;
+  background-color: #FFFFFF;
+  color: #111318;
+  border: 2px solid #111318;
+  box-shadow: 3px 3px 0px #111318;
+  padding: 0.3rem 0.75rem;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 700;
+  font-size: 0.72rem;
+  font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 @utility dot-matrix {
   font-family: var(--font-mono);
-  background-color: #12141A;
-  color: #C9F031;
-  border-top: 3px solid #000000;
-  border-bottom: 3px solid #000000;
-  text-shadow: 0 0 8px rgba(201, 240, 49, 0.6);
+  background-color: #D4FF00;
+  color: #111318;
+  border-top: 3px solid #111318;
+  border-bottom: 3px solid #111318;
 }
 
 @keyframes marquee {
@@ -255,10 +250,10 @@
   display: inline-block;
   white-space: nowrap;
   font-family: var(--font-mono);
-  font-size: 0.8rem;
-  font-weight: 800;
+  font-size: 0.85rem;
+  font-weight: 900;
   letter-spacing: 0.15em;
-  animation: marquee 30s linear infinite;
+  animation: marquee 25s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

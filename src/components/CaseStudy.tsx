@@ -25,7 +25,7 @@ export const stages: Stage[] = [
       in: "Voice note: “there's water gushing from the pipe outside 42 Marine Drive since morning”",
       out: "Transcript + language code + confidence 0.94",
     },
-    stripe: "border-t-4 border-[#2B6EFF]",
+    stripe: "border-t-4 border-[#1D63FF]",
   },
   {
     id: "evidence",
@@ -38,7 +38,7 @@ export const stages: Stage[] = [
       in: "photo_4821.jpg (burst pipe, flooded footpath)",
       out: "tags: water, pipe, pavement, flooding · OCR: “WARD 6 / METER 118”",
     },
-    stripe: "border-t-4 border-[#C9F031]",
+    stripe: "border-t-4 border-[#10B981]",
   },
   {
     id: "triage",
@@ -51,7 +51,7 @@ export const stages: Stage[] = [
       in: "Transcript + vision tags",
       out: "severity: HIGH · category: water_leak · location: 42 Marine Dr · ward: 6",
     },
-    stripe: "border-t-4 border-[#A855F7]",
+    stripe: "border-t-4 border-[#8B5CF6]",
   },
   {
     id: "policy",
@@ -89,17 +89,17 @@ export function CaseStudy() {
     <section
       id="case-study"
       aria-label="CivicPulse case study"
-      className="scroll-mt-6 border-t-3 border-[#000000] bg-[#0B0C0E] p-6 md:p-10 font-mono"
+      className="scroll-mt-6 border-t-3 border-[#111318] bg-[#F8F6F0] p-6 md:p-10 font-mono"
     >
-      <div className="flex flex-wrap items-end justify-between gap-4 border-b-2 border-slate-800 pb-6">
+      <div className="flex flex-wrap items-end justify-between gap-4 border-b-3 border-[#111318] pb-6">
         <div>
           <div className="badge-console">
             <span>📚</span> REAL-WORLD CASE STUDY
           </div>
-          <h2 className="mt-2 font-display text-2xl font-black text-[#F3F0E9] md:text-4xl">
+          <h2 className="mt-2 font-display text-2xl font-black text-[#111318] md:text-4xl">
             5-STAGE HAZARD TRIAGE PIPELINE
           </h2>
-          <p className="mt-2 max-w-2xl text-xs text-slate-400">
+          <p className="mt-2 max-w-2xl text-xs text-slate-700 font-bold">
             City call centres drown in unstructured complaints. CivicPulse chains 5 Azure AI services into a single unified dispatch pipeline.
           </p>
         </div>
@@ -110,9 +110,9 @@ export function CaseStudy() {
             { k: "5", v: "Azure AI services" },
             { k: "1", v: "dispatch plan" },
           ].map((s) => (
-            <div key={s.v} className="border-2 border-black bg-[#F3F0E9] p-3 text-center text-black shadow-[4px_4px_0px_#000000]">
+            <div key={s.v} className="border-3 border-[#111318] bg-[#FFFFFF] p-3 text-center text-[#111318] shadow-[4px_4px_0px_#111318]">
               <div className="font-display text-2xl font-black text-[#FF3B1F] md:text-3xl">{s.k}</div>
-              <div className="text-[10px] font-bold uppercase text-slate-700">{s.v}</div>
+              <div className="text-[10px] font-black uppercase text-slate-600">{s.v}</div>
             </div>
           ))}
         </div>
@@ -130,10 +130,10 @@ export function CaseStudy() {
               aria-controls={`stage-panel-${s.id}`}
               tabIndex={i === active ? 0 : -1}
               onClick={() => setActive(i)}
-              className={`font-mono text-xs font-bold uppercase transition-all px-4 py-2.5 border-3 border-[#000000] ${
+              className={`text-xs font-black uppercase transition-all px-4 py-2.5 border-3 border-[#111318] ${
                 i === active
-                  ? "bg-[#C9F031] text-[#000000] shadow-[4px_4px_0px_#000000]"
-                  : "bg-[#F3F0E9] text-[#000000] hover:bg-[#ffffff]"
+                  ? "bg-[#D4FF00] text-[#111318] shadow-[4px_4px_0px_#111318]"
+                  : "bg-[#FFFFFF] text-[#111318] hover:bg-[#F8F6F0]"
               }`}
             >
               <span>0{i + 1}. {s.service}</span>
@@ -154,11 +154,11 @@ export function CaseStudy() {
         className={`card-paper relative overflow-hidden mt-6 grid grid-cols-1 gap-6 p-6 lg:grid-cols-12 ${stage.stripe}`}
       >
         <div className="lg:col-span-7">
-          <p className="text-xs font-bold uppercase tracking-wider text-[#FF3B1F]">
+          <p className="text-xs font-black uppercase tracking-wider text-[#FF3B1F]">
             STAGE 0{active + 1} · {stage.azure}
           </p>
-          <h3 className="mt-2 font-display text-xl font-black text-[#0B0C0E] md:text-2xl">{stage.title}</h3>
-          <p className="mt-3 text-xs leading-relaxed text-slate-800">
+          <h3 className="mt-2 font-display text-xl font-black text-[#111318] md:text-2xl">{stage.title}</h3>
+          <p className="mt-3 text-xs leading-relaxed text-slate-800 font-bold">
             {stage.body}
           </p>
           <Link
@@ -171,13 +171,13 @@ export function CaseStudy() {
           </Link>
         </div>
         <div className="grid gap-3 lg:col-span-5">
-          <div className="border-2 border-black bg-white p-4">
-            <p className="text-[10px] font-bold text-slate-500 uppercase">STAGE INPUT</p>
-            <p className="mt-1 text-xs text-slate-900 leading-relaxed font-mono bg-slate-100 p-2.5 border border-slate-300">{stage.io.in}</p>
+          <div className="border-3 border-[#111318] bg-[#F8F6F0] p-4">
+            <p className="text-[10px] font-black text-slate-600 uppercase">STAGE INPUT</p>
+            <p className="mt-1 text-xs text-[#111318] leading-relaxed font-bold bg-white p-2.5 border border-[#111318]">{stage.io.in}</p>
           </div>
-          <div className="border-2 border-black bg-white p-4">
-            <p className="text-[10px] font-bold text-slate-500 uppercase">STAGE OUTPUT</p>
-            <p className="mt-1 text-xs text-slate-900 leading-relaxed font-mono bg-slate-100 p-2.5 border border-slate-300">{stage.io.out}</p>
+          <div className="border-3 border-[#111318] bg-[#F8F6F0] p-4">
+            <p className="text-[10px] font-black text-slate-600 uppercase">STAGE OUTPUT</p>
+            <p className="mt-1 text-xs text-[#111318] leading-relaxed font-bold bg-white p-2.5 border border-[#111318]">{stage.io.out}</p>
           </div>
         </div>
       </motion.div>

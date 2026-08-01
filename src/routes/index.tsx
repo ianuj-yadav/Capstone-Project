@@ -13,11 +13,11 @@ const DispatchPipe3D = lazy(() => import("@/components/DispatchPipe3D"));
 
 function DispatchPipeFallback() {
   return (
-    <div className="relative flex h-[320px] w-full flex-col items-center justify-center border-3 border-[#000000] bg-[#0B0C0E] p-6 shadow-[6px_6px_0px_#000000] text-center font-mono">
+    <div className="relative flex h-[320px] w-full flex-col items-center justify-center border-3 border-[#111318] bg-[#FAF8F2] p-6 shadow-[6px_6px_0px_#111318] text-center font-mono">
       <p className="font-display text-xl font-black text-[#FF3B1F]">
         AZURE AI CONDUIT 3D
       </p>
-      <p className="mt-2 text-xs font-bold text-[#C9F031]">
+      <p className="mt-2 text-xs font-bold text-[#111318]">
         [INITIALIZING 3D PIPELINE CONDUIT...]
       </p>
     </div>
@@ -69,27 +69,27 @@ export function Index() {
   const [activeStage, setActiveStage] = useState(0);
 
   return (
-    <main className="relative min-h-screen bg-[#0B0C0E] text-[#F3F0E9] font-mono selection:bg-[#C9F031] selection:text-[#000000]">
+    <main className="relative min-h-screen bg-[#F8F6F0] text-[#111318] font-mono selection:bg-[#D4FF00] selection:text-[#111318]">
       {/* Console Top Header Bar */}
-      <header className="border-b-3 border-[#000000] bg-[#12141A] px-4 py-3 md:px-8">
+      <header className="border-b-3 border-[#111318] bg-[#FFFFFF] px-4 py-3 md:px-8 shadow-[0px_4px_0px_#111318]">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4">
           <div className="flex flex-wrap items-center gap-3">
-            <h1 className="font-display text-2xl font-black tracking-tight text-[#F3F0E9] md:text-3xl">
+            <h1 className="font-display text-2xl font-black tracking-tight text-[#111318] md:text-3xl">
               CIVICPULSE
             </h1>
-            <span className="border border-[#C9F031] bg-black px-2 py-0.5 text-[10px] font-bold text-[#C9F031]">
+            <span className="border-2 border-[#111318] bg-[#D4FF00] px-2.5 py-0.5 text-[11px] font-black text-[#111318]">
               DISPATCH CONSOLE v2.0
             </span>
-            <span className="hidden text-xs text-slate-500 md:inline">
+            <span className="hidden text-xs text-slate-700 font-bold md:inline">
               Season of AI 2.0 · Final Capstone
             </span>
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
             <span className="badge-console">
-              <span className="h-2 w-2 bg-[#C9F031] animate-pulse" /> SYSTEM ONLINE
+              <span className="h-2.5 w-2.5 bg-[#FF3B1F] animate-pulse" /> SYSTEM ONLINE
             </span>
-            <span className="badge-console">05 AZURE SERVICES</span>
+            <span className="badge-console bg-[#D4FF00]">05 AZURE SERVICES</span>
           </div>
         </div>
       </header>
@@ -108,9 +108,9 @@ export function Index() {
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  className="inline-flex items-center gap-2 border-2 border-[#FF3B1F] bg-[#1A0B0B] px-3 py-1 font-mono text-xs font-bold text-[#FF3B1F]"
+                  className="inline-flex items-center gap-2 border-3 border-[#111318] bg-[#FF3B1F] px-3 py-1 font-mono text-xs font-black text-[#FFFFFF] shadow-[4px_4px_0px_#111318]"
                 >
-                  <span className="h-2 w-2 bg-[#FF3B1F] animate-ping" />
+                  <span className="h-2 w-2 bg-[#FFFFFF] animate-ping" />
                   MUNICIPAL EMERGENCY TRIAGE OPERATOR
                 </motion.div>
 
@@ -118,18 +118,18 @@ export function Index() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
-                  className="mt-4 font-display text-4xl font-black leading-none text-[#F3F0E9] sm:text-5xl md:text-6xl lg:text-7xl"
+                  className="mt-4 font-display text-4xl font-black leading-none text-[#111318] sm:text-5xl md:text-6xl lg:text-7xl"
                 >
                   A CITY HEARS EVERY HAZARD.
                   <br />
-                  <span className="text-[#C9F031]">AND ANSWERS IN SECONDS.</span>
+                  <span className="bg-[#D4FF00] px-2 text-[#111318]">AND ANSWERS IN SECONDS.</span>
                 </motion.h2>
 
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
-                  className="mt-6 max-w-xl font-mono text-sm leading-relaxed text-slate-300"
+                  className="mt-6 max-w-xl font-mono text-sm leading-relaxed text-slate-800 font-bold"
                 >
                   Residents report broken pipes, live wires, and flooded underpasses via voice notes & photos.
                   CivicPulse transcribes, analyzes evidence, scores urgency, cites municipal bylaws, and drafts work orders — 5 Azure AI microservices acting as one operator.
@@ -171,25 +171,25 @@ export function Index() {
 
         {/* ---- 3. PIPELINE DETAIL STRIP (5 Stages as Horizontal Bento Row) ---- */}
         <section aria-label="Pipeline Detail Strip" className="mt-12">
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-slate-800 pb-4">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b-3 border-[#111318] pb-4">
             <div>
               <div className="badge-console">
                 <span>⚡</span> MICROSERVICE PIPELINE STRIP
               </div>
-              <h3 className="mt-2 font-display text-xl font-black text-[#F3F0E9] md:text-2xl">
+              <h3 className="mt-2 font-display text-xl font-black text-[#111318] md:text-2xl">
                 5-STAGE AZURE AI DATA HIGHWAY
               </h3>
             </div>
-            <span className="font-mono text-xs text-slate-400">
+            <span className="font-mono text-xs text-slate-700 font-bold">
               Click a card to activate stage on 3D conduit
             </span>
           </div>
 
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5 font-mono">
             {[
-              { idx: 0, name: "Speech STT", azure: "Azure Speech", color: "#2B6EFF", desc: "12s voice note in → Transcript out", stripe: "bg-[#2B6EFF]" },
-              { idx: 1, name: "Vision Evidence", azure: "Azure Vision", color: "#C9F031", desc: "Photo input → OCR & Hazard tags", stripe: "bg-[#C9F031]" },
-              { idx: 2, name: "Language Triage", azure: "Azure Language", color: "#A855F7", desc: "Sentiment & Severity scoring", stripe: "bg-[#A855F7]" },
+              { idx: 0, name: "Speech STT", azure: "Azure Speech", color: "#1D63FF", desc: "12s voice note in → Transcript out", stripe: "bg-[#1D63FF]" },
+              { idx: 1, name: "Vision Evidence", azure: "Azure Vision", color: "#10B981", desc: "Photo input → OCR & Hazard tags", stripe: "bg-[#10B981]" },
+              { idx: 2, name: "Language Triage", azure: "Azure Language", color: "#8B5CF6", desc: "Sentiment & Severity scoring", stripe: "bg-[#8B5CF6]" },
               { idx: 3, name: "RAG Search", azure: "AI Search", color: "#F59E0B", desc: "Bylaw citation & 4h SLA match", stripe: "bg-[#F59E0B]" },
               { idx: 4, name: "OpenAI Dispatch", azure: "Azure OpenAI", color: "#FF3B1F", desc: "Work Order WO-9482 + Resident SMS", stripe: "bg-[#FF3B1F]" },
             ].map((st) => {
@@ -200,20 +200,20 @@ export function Index() {
                   type="button"
                   onClick={() => setActiveStage(st.idx)}
                   className={`card-paper relative overflow-hidden flex flex-col justify-between p-4 text-left cursor-pointer transition-all ${
-                    isActive ? "ring-3 ring-[#C9F031] scale-[1.02] shadow-hard-lg" : ""
+                    isActive ? "ring-4 ring-[#FF3B1F] scale-[1.02] shadow-hard-lg" : ""
                   }`}
                 >
-                  <div className={`absolute top-0 left-0 right-0 h-2 ${st.stripe}`} />
+                  <div className={`absolute top-0 left-0 right-0 h-2.5 ${st.stripe}`} />
                   <div>
-                    <div className="flex items-center justify-between text-[10px] font-bold text-slate-500">
+                    <div className="flex items-center justify-between text-[10px] font-black text-slate-600">
                       <span>STAGE 0{st.idx + 1}</span>
-                      {isActive && <span className="bg-black text-[#C9F031] px-1.5 py-0.5">ACTIVE</span>}
+                      {isActive && <span className="bg-[#FF3B1F] text-white px-1.5 py-0.5">ACTIVE</span>}
                     </div>
-                    <h4 className="mt-2 font-display text-base font-black text-[#0B0C0E]">{st.name}</h4>
+                    <h4 className="mt-2 font-display text-base font-black text-[#111318]">{st.name}</h4>
                     <p className="text-[11px] font-bold text-slate-600">{st.azure}</p>
                   </div>
 
-                  <div className="mt-4 border-t border-slate-300 pt-2 text-[10px] text-slate-800 leading-tight">
+                  <div className="mt-4 border-t-2 border-[#111318] pt-2 text-[10px] text-slate-800 leading-tight font-bold">
                     {st.desc}
                   </div>
                 </button>
@@ -239,16 +239,16 @@ export function Index() {
 
         {/* ---- 7. LIVE MODULES RACK ---- */}
         <section id="services" className="mt-12 scroll-mt-6">
-          <div className="flex flex-wrap items-end justify-between gap-4 border-b-2 border-slate-800 pb-4">
+          <div className="flex flex-wrap items-end justify-between gap-4 border-b-3 border-[#111318] pb-4">
             <div>
               <div className="badge-console">
                 <span>📦</span> DEPLOYED MICROSERVICES
               </div>
-              <h2 className="mt-2 font-display text-2xl font-black text-[#F3F0E9] md:text-3xl">
+              <h2 className="mt-2 font-display text-2xl font-black text-[#111318] md:text-3xl">
                 LIVE AZURE AI MODULES
               </h2>
             </div>
-            <span className="font-mono text-xs text-slate-400">
+            <span className="font-mono text-xs text-slate-700 font-bold">
               {services.length} deployments · interactive card controls
             </span>
           </div>
