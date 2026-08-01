@@ -22,22 +22,22 @@ function NeuralRingScene({ activeIndex }: { activeIndex: number }) {
   const particlesRef = useRef<THREE.Points>(null);
 
   // Particle positions
-  const particleCount = 120;
+  const particleCount = 130;
   const positions = useRef(new Float32Array(particleCount * 3));
   const speeds = useRef(new Float32Array(particleCount));
 
   useEffect(() => {
     for (let i = 0; i < particleCount; i++) {
       positions.current[i * 3] = (Math.random() - 0.5) * 8.2;
-      positions.current[i * 3 + 1] = (Math.random() - 0.5) * 0.4;
-      positions.current[i * 3 + 2] = (Math.random() - 0.5) * 0.4;
-      speeds.current[i] = 0.02 + Math.random() * 0.035;
+      positions.current[i * 3 + 1] = (Math.random() - 0.5) * 0.45;
+      positions.current[i * 3 + 2] = (Math.random() - 0.5) * 0.45;
+      speeds.current[i] = 0.02 + Math.random() * 0.04;
     }
   }, []);
 
   useFrame((_, delta) => {
     if (groupRef.current) {
-      groupRef.current.rotation.y += delta * 0.12;
+      groupRef.current.rotation.y += delta * 0.14;
     }
 
     if (particlesRef.current) {
@@ -60,17 +60,17 @@ function NeuralRingScene({ activeIndex }: { activeIndex: number }) {
 
   return (
     <group ref={groupRef}>
-      {/* Metallic Conduit Torus */}
+      {/* Sleek Metallic Bus Conduit */}
       <mesh ref={ringRef} rotation={[0, 0, Math.PI / 2]}>
         <cylinderGeometry args={[0.22, 0.22, 8.2, 32]} />
         <meshStandardMaterial
-          color="#1E293B"
-          roughness={0.2}
-          metalness={0.7}
+          color="#0B0F19"
+          roughness={0.1}
+          metalness={0.9}
         />
       </mesh>
 
-      {/* Internal Core Wireframe */}
+      {/* Pulsing Energy Core */}
       <mesh rotation={[0, 0, Math.PI / 2]}>
         <cylinderGeometry args={[0.1, 0.1, 8.1, 16]} />
         <meshBasicMaterial color="#2563EB" wireframe />
@@ -84,16 +84,16 @@ function NeuralRingScene({ activeIndex }: { activeIndex: number }) {
             {/* Collar Ring */}
             <mesh rotation={[0, 0, Math.PI / 2]}>
               <cylinderGeometry args={[0.38, 0.38, 0.28, 24]} />
-              <meshStandardMaterial color="#0F172A" roughness={0.1} metalness={0.9} />
+              <meshStandardMaterial color="#0B0F19" roughness={0.1} metalness={0.9} />
             </mesh>
 
             {/* Glowing Sphere */}
             <mesh>
-              <sphereGeometry args={[isActive ? 0.44 : 0.32, 32, 32]} />
+              <sphereGeometry args={[isActive ? 0.46 : 0.34, 32, 32]} />
               <meshStandardMaterial
                 color={node.color}
                 emissive={node.color}
-                emissiveIntensity={isActive ? 1.6 : 0.5}
+                emissiveIntensity={isActive ? 1.8 : 0.5}
                 roughness={0.1}
               />
             </mesh>
@@ -102,7 +102,7 @@ function NeuralRingScene({ activeIndex }: { activeIndex: number }) {
             <Text
               position={[0, 0.75, 0]}
               fontSize={0.28}
-              color={isActive ? "#2563EB" : "#0F172A"}
+              color={isActive ? "#2563EB" : "#0B0F19"}
               anchorX="center"
               anchorY="middle"
               font="https://fonts.gstatic.com/s/jetbrainsmono/v13/tB3g524-GGq3n53yAoTsdbI.woff"
@@ -146,11 +146,11 @@ export function DispatchPipe3D({
   }, []);
 
   return (
-    <div className="card-warm relative h-[360px] w-full overflow-hidden bg-[#EAE7E1]">
-      {/* Dark Slate Top Bar */}
-      <div className="flex flex-wrap items-center justify-between border-b border-slate-700 bg-[#0F172A] px-5 py-3 text-xs font-mono text-white">
+    <div className="card-cyber relative h-[360px] w-full overflow-hidden bg-[#E5E2D9]">
+      {/* Top Header Bar */}
+      <div className="flex flex-wrap items-center justify-between border-b-2 border-[#0B0F19] bg-[#0B0F19] px-5 py-3 text-xs font-mono text-white">
         <div className="flex items-center gap-2.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-cyan-400 animate-pulse" />
+          <span className="h-2.5 w-2.5 rounded-full bg-blue-500 animate-pulse" />
           <span className="font-extrabold text-white tracking-wide">
             3D AZURE AI CONDUIT
           </span>
@@ -166,7 +166,7 @@ export function DispatchPipe3D({
           <p className="font-display text-lg font-bold text-blue-600">
             AZURE AI PIPELINE CONDUIT
           </p>
-          <p className="mt-2 font-mono text-xs text-slate-700">
+          <p className="mt-2 font-mono text-xs text-slate-800">
             [5-Stage Highway: Speech → Vision → Language → RAG → OpenAI]
           </p>
         </div>
@@ -181,7 +181,7 @@ export function DispatchPipe3D({
       )}
 
       {/* Stage Selector Pill Row */}
-      <div className="absolute bottom-3 left-3 right-3 flex flex-wrap justify-center gap-2 bg-[#0F172A] p-2.5 rounded-xl border border-slate-700 shadow-md">
+      <div className="absolute bottom-3 left-3 right-3 flex flex-wrap justify-center gap-2 bg-[#0B0F19] p-2.5 rounded-xl border-2 border-[#0B0F19] shadow-md">
         {STAGE_NODES.map((node, idx) => {
           const isActive = idx === activeStageIndex;
           return (
@@ -189,9 +189,9 @@ export function DispatchPipe3D({
               key={node.name}
               type="button"
               onClick={() => onSelectStage?.(idx)}
-              className={`px-3 py-1.5 text-[11px] font-mono font-bold rounded-lg transition-all ${
+              className={`px-3.5 py-1.5 text-[11px] font-mono font-extrabold rounded-lg transition-all ${
                 isActive
-                  ? "bg-blue-600 text-white shadow-sm"
+                  ? "bg-blue-600 text-white shadow-sm scale-105"
                   : "bg-slate-800 text-slate-300 hover:bg-slate-700"
               }`}
             >
