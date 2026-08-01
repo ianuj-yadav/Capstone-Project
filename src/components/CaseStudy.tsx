@@ -10,7 +10,7 @@ type Stage = {
   title: string;
   body: string;
   io: { in: string; out: string };
-  stripe: string;
+  color: string;
 };
 
 export const stages: Stage[] = [
@@ -25,7 +25,7 @@ export const stages: Stage[] = [
       in: "Voice note: “there's water gushing from the pipe outside 42 Marine Drive since morning”",
       out: "Transcript + language code + confidence 0.94",
     },
-    stripe: "border-t-4 border-[#1D63FF]",
+    color: "bg-blue-600",
   },
   {
     id: "evidence",
@@ -38,7 +38,7 @@ export const stages: Stage[] = [
       in: "photo_4821.jpg (burst pipe, flooded footpath)",
       out: "tags: water, pipe, pavement, flooding · OCR: “WARD 6 / METER 118”",
     },
-    stripe: "border-t-4 border-[#10B981]",
+    color: "bg-emerald-600",
   },
   {
     id: "triage",
@@ -51,7 +51,7 @@ export const stages: Stage[] = [
       in: "Transcript + vision tags",
       out: "severity: HIGH · category: water_leak · location: 42 Marine Dr · ward: 6",
     },
-    stripe: "border-t-4 border-[#8B5CF6]",
+    color: "bg-purple-600",
   },
   {
     id: "policy",
@@ -64,7 +64,7 @@ export const stages: Stage[] = [
       in: "“water main leak response time ward 6”",
       out: "SOP-14 §3.2 — 4h response · Water Works Dept · escalate after 8h",
     },
-    stripe: "border-t-4 border-[#F59E0B]",
+    color: "bg-amber-600",
   },
   {
     id: "plan",
@@ -77,7 +77,7 @@ export const stages: Stage[] = [
       in: "Transcript + evidence + severity + SOP-14",
       out: "Work order WO-2261 · crew: Water Works · SLA 4h · resident SMS drafted",
     },
-    stripe: "border-t-4 border-[#FF3B1F]",
+    color: "bg-red-600",
   },
 ];
 
@@ -89,17 +89,17 @@ export function CaseStudy() {
     <section
       id="case-study"
       aria-label="CivicPulse case study"
-      className="scroll-mt-6 border-t-3 border-[#111318] bg-[#F8F6F0] p-6 md:p-10 font-mono"
+      className="glass-panel scroll-mt-24 p-6 md:p-10"
     >
-      <div className="flex flex-wrap items-end justify-between gap-4 border-b-3 border-[#111318] pb-6">
+      <div className="flex flex-wrap items-end justify-between gap-4 border-b border-slate-200/80 pb-6">
         <div>
-          <div className="badge-console">
+          <div className="badge-glass text-indigo-700">
             <span>📚</span> REAL-WORLD CASE STUDY
           </div>
-          <h2 className="mt-2 font-display text-2xl font-black text-[#111318] md:text-4xl">
+          <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
             5-STAGE HAZARD TRIAGE PIPELINE
           </h2>
-          <p className="mt-2 max-w-2xl text-xs text-slate-700 font-bold">
+          <p className="mt-1.5 max-w-2xl text-xs text-slate-600 font-medium">
             City call centres drown in unstructured complaints. CivicPulse chains 5 Azure AI services into a single unified dispatch pipeline.
           </p>
         </div>
@@ -110,16 +110,16 @@ export function CaseStudy() {
             { k: "5", v: "Azure AI services" },
             { k: "1", v: "dispatch plan" },
           ].map((s) => (
-            <div key={s.v} className="border-3 border-[#111318] bg-[#FFFFFF] p-3 text-center text-[#111318] shadow-[4px_4px_0px_#111318]">
-              <div className="font-display text-2xl font-black text-[#FF3B1F] md:text-3xl">{s.k}</div>
-              <div className="text-[10px] font-black uppercase text-slate-600">{s.v}</div>
+            <div key={s.v} className="glass-card p-3 text-center">
+              <div className="font-display text-2xl font-extrabold text-indigo-600 md:text-3xl">{s.k}</div>
+              <div className="text-[10px] font-bold uppercase text-slate-500">{s.v}</div>
             </div>
           ))}
         </div>
       </div>
 
       {/* Stage Picker Tabs */}
-      <ol className="mt-6 flex flex-wrap gap-2" role="tablist" aria-label="Pipeline stages">
+      <ol className="mt-6 flex flex-wrap gap-2.5" role="tablist" aria-label="Pipeline stages">
         {stages.map((s, i) => (
           <li key={s.id}>
             <button
@@ -130,10 +130,10 @@ export function CaseStudy() {
               aria-controls={`stage-panel-${s.id}`}
               tabIndex={i === active ? 0 : -1}
               onClick={() => setActive(i)}
-              className={`text-xs font-black uppercase transition-all px-4 py-2.5 border-3 border-[#111318] ${
+              className={`px-4 py-2.5 text-xs font-bold rounded-2xl transition-all ${
                 i === active
-                  ? "bg-[#D4FF00] text-[#111318] shadow-[4px_4px_0px_#111318]"
-                  : "bg-[#FFFFFF] text-[#111318] hover:bg-[#F8F6F0]"
+                  ? "bg-indigo-600 text-white shadow-md shadow-indigo-500/20 scale-105"
+                  : "bg-white/80 text-slate-700 hover:bg-white border border-slate-200"
               }`}
             >
               <span>0{i + 1}. {s.service}</span>
@@ -151,18 +151,19 @@ export function CaseStudy() {
         role="tabpanel"
         id={`stage-panel-${stage.id}`}
         aria-labelledby={`stage-tab-${stage.id}`}
-        className={`card-paper relative overflow-hidden mt-6 grid grid-cols-1 gap-6 p-6 lg:grid-cols-12 ${stage.stripe}`}
+        className="glass-card relative overflow-hidden mt-6 grid grid-cols-1 gap-6 p-6 lg:grid-cols-12"
       >
+        <div className={`absolute top-0 left-0 right-0 h-1.5 ${stage.color}`} />
         <div className="lg:col-span-7">
-          <p className="text-xs font-black uppercase tracking-wider text-[#FF3B1F]">
+          <p className="text-xs font-bold uppercase tracking-wider text-indigo-600 font-mono">
             STAGE 0{active + 1} · {stage.azure}
           </p>
-          <h3 className="mt-2 font-display text-xl font-black text-[#111318] md:text-2xl">{stage.title}</h3>
-          <p className="mt-3 text-xs leading-relaxed text-slate-800 font-bold">
+          <h3 className="mt-2 font-display text-xl font-bold text-slate-900 md:text-2xl">{stage.title}</h3>
+          <p className="mt-3 text-xs leading-relaxed text-slate-600 font-medium">
             {stage.body}
           </p>
           <Link
-            className="btn-dispatch mt-6 inline-flex"
+            className="btn-aurora mt-6 inline-flex"
             to="/demo/$serviceId"
             params={{ serviceId: stage.serviceId }}
           >
@@ -170,14 +171,14 @@ export function CaseStudy() {
             <span>→</span>
           </Link>
         </div>
-        <div className="grid gap-3 lg:col-span-5">
-          <div className="border-3 border-[#111318] bg-[#F8F6F0] p-4">
-            <p className="text-[10px] font-black text-slate-600 uppercase">STAGE INPUT</p>
-            <p className="mt-1 text-xs text-[#111318] leading-relaxed font-bold bg-white p-2.5 border border-[#111318]">{stage.io.in}</p>
+        <div className="grid gap-3 lg:col-span-5 font-mono">
+          <div className="rounded-xl border border-slate-200/80 bg-slate-50 p-4">
+            <p className="text-[10px] font-bold text-slate-500 uppercase">STAGE INPUT</p>
+            <p className="mt-1 text-xs text-slate-900 leading-relaxed font-medium bg-white p-2.5 rounded-lg border border-slate-200">{stage.io.in}</p>
           </div>
-          <div className="border-3 border-[#111318] bg-[#F8F6F0] p-4">
-            <p className="text-[10px] font-black text-slate-600 uppercase">STAGE OUTPUT</p>
-            <p className="mt-1 text-xs text-[#111318] leading-relaxed font-bold bg-white p-2.5 border border-[#111318]">{stage.io.out}</p>
+          <div className="rounded-xl border border-slate-200/80 bg-slate-50 p-4">
+            <p className="text-[10px] font-bold text-slate-500 uppercase">STAGE OUTPUT</p>
+            <p className="mt-1 text-xs text-slate-900 leading-relaxed font-medium bg-white p-2.5 rounded-lg border border-slate-200">{stage.io.out}</p>
           </div>
         </div>
       </motion.div>
