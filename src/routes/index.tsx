@@ -5,6 +5,9 @@ import { TiltCard } from "@/components/TiltCard";
 import { OnboardingTour } from "@/components/OnboardingTour";
 import { LucidLoader } from "@/components/LucidLoader";
 import { CaseStudy } from "@/components/CaseStudy";
+import { PipelineSimulator } from "@/components/PipelineSimulator";
+import { ArchitectureDiagram } from "@/components/ArchitectureDiagram";
+import { CapstoneScorecard } from "@/components/CapstoneScorecard";
 
 const HeroScene = lazy(() => import("@/components/HeroScene"));
 
@@ -40,7 +43,7 @@ function DeferredHeroScene() {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "CivicPulse — Azure AI Hazard Triage | Season of AI 2.0" },
+      { title: "CivicPulse — Azure AI Hazard Triage | Season of AI 2.0 Capstone" },
       {
         name: "description",
         content:
@@ -74,10 +77,10 @@ function Index() {
               aria-hidden
               className="hidden h-5 w-px bg-slate-200 md:block"
             />
-            <p className="text-xs font-medium text-slate-500">Season of AI 2.0 · Capstone Showcase</p>
+            <p className="text-xs font-medium text-slate-500">Season of AI 2.0 · Final Capstone Showcase</p>
           </div>
           <div className="flex flex-wrap gap-2">
-            <span className="plate">05 AI Services</span>
+            <span className="plate">05 Azure AI Services</span>
             <span className="plate">01 Unified Pipeline</span>
             <span className="plate">Live System</span>
           </div>
@@ -101,22 +104,18 @@ function Index() {
               plan — five Azure AI services acting as one operator.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <a className="gold-cta" href="#case-study">
-                See the pipeline
+              <a className="gold-cta" href="#simulator">
+                Try Live Simulator
                 <span aria-hidden className="arrow">
                   ↓
                 </span>
               </a>
-              <Link
-                className="ghost-cta"
-                to="/demo/$serviceId"
-                params={{ serviceId: services[0]!.id }}
-              >
-                Run a live module
+              <a className="ghost-cta" href="#architecture">
+                System Topology
                 <span aria-hidden className="arrow">
                   →
                 </span>
-              </Link>
+              </a>
             </div>
             <p className="mt-5 text-xs text-slate-500 font-mono">
               Hover over or drag the 3D scene to steer the model
@@ -127,8 +126,14 @@ function Index() {
           </div>
         </section>
 
+        {/* ---- Interactive 5-Service Pipeline Simulator ---- */}
+        <PipelineSimulator />
+
         {/* ---- Case study: the real-world pipeline ---- */}
         <CaseStudy />
+
+        {/* ---- System Architecture Topology ---- */}
+        <ArchitectureDiagram />
 
         {/* ---- Module rack ---- */}
         <section
@@ -150,6 +155,9 @@ function Index() {
             <ServiceGrid />
           </div>
         </section>
+
+        {/* ---- Season of AI 2.0 Scorecard ---- */}
+        <CapstoneScorecard />
 
         {/* ---- Rationale bento ---- */}
         <section className="border-t border-slate-200 bg-slate-50/60 p-6 md:p-8" aria-label="Why it qualifies">
