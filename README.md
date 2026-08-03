@@ -27,3 +27,6 @@ npm run dev
 - TypeScript
 - React
 - Tailwind CSS
+
+
+made with love by ANUJ
